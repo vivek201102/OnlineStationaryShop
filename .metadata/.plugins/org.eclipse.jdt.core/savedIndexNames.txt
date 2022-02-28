@@ -1,0 +1,4 @@
+INDEX VERSION 1.131+D:\GIt\OnlineStationaryShop\.metadata\.plugins\org.eclipse.jdt.core
+896134721.index
+588993758.index
+1999907071.index
