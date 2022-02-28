@@ -1,0 +1,7 @@
+INDEX VERSION 1.131
+D:\Stationaryshop\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3639423775.index
+\OnlineShop\src\main\resources
+D:\Stationaryshop\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3988038564.index
+\com.project.stationary\src\main\resources
+D:\Stationaryshop\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\413892261.index
+\OnlineShop\src\main\java
