@@ -1,0 +1,20 @@
+2022-02-28 21:59:16,322 [Worker-5: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2022-02-28 21:59:52,927 [Worker-9: Importing Maven projects] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.project.shop:OnlineShop:0.0.1-SNAPSHOT @ D:\GIt\OnlineStationaryShop\Stationaryshop\OnlineShop\pom.xml.
+2022-02-28 21:59:54,687 [Worker-9: Importing Maven projects] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-02-28 21:59:54,689 [Worker-9: Importing Maven projects] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIt\OnlineStationaryShop\Stationaryshop\OnlineShop\src\main\resources
+2022-02-28 21:59:54,694 [Worker-9: Importing Maven projects] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-02-28 21:59:54,696 [Worker-9: Importing Maven projects] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIt\OnlineStationaryShop\Stationaryshop\OnlineShop\src\test\resources
+2022-02-28 21:59:56,554 [Worker-9: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /OnlineShop/src/main/java
+2022-02-28 21:59:56,555 [Worker-9: Importing Maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /OnlineShop/src/test/java
+2022-02-28 21:59:57,188 [Worker-9: Importing Maven projects] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-02-28 21:59:57,190 [Worker-9: Importing Maven projects] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIt\OnlineStationaryShop\Stationaryshop\OnlineShop\src\main\resources
+2022-02-28 21:59:57,192 [Worker-9: Importing Maven projects] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-02-28 21:59:57,194 [Worker-9: Importing Maven projects] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIt\OnlineStationaryShop\Stationaryshop\OnlineShop\src\test\resources
+2022-02-28 21:59:57,197 [Worker-9: Importing Maven projects] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of OnlineShop
+2022-02-28 21:59:57,201 [Worker-9: Importing Maven projects] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for OnlineShop
+2022-02-28 21:59:57,218 [Worker-9: Importing Maven projects] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-02-28 21:59:57,925 [Worker-9: Importing Maven projects] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Imported and configured 1 project(s) in 11 sec
+2022-02-28 22:00:00,838 [Worker-33: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-02-28 22:00:00,840 [Worker-33: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIt\OnlineStationaryShop\Stationaryshop\OnlineShop\src\main\resources
+2022-02-28 22:00:00,842 [Worker-33: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-02-28 22:00:00,844 [Worker-33: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIt\OnlineStationaryShop\Stationaryshop\OnlineShop\src\test\resources
