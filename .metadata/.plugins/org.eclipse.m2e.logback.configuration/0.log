@@ -18,3 +18,16 @@
 2022-02-28 22:00:00,840 [Worker-33: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIt\OnlineStationaryShop\Stationaryshop\OnlineShop\src\main\resources
 2022-02-28 22:00:00,842 [Worker-33: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
 2022-02-28 22:00:00,844 [Worker-33: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIt\OnlineStationaryShop\Stationaryshop\OnlineShop\src\test\resources
+2022-03-10 21:05:25,225 [Worker-5: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2022-03-10 21:05:39,131 [Worker-12: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-03-10 21:05:39,137 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIt\OnlineStationaryShop\Stationaryshop\OnlineShop\src\main\resources
+2022-03-10 21:05:39,141 [Worker-12: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-03-10 21:05:39,143 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIt\OnlineStationaryShop\Stationaryshop\OnlineShop\src\test\resources
+2022-03-10 21:07:09,385 [Worker-8: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-03-10 21:07:09,386 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIt\OnlineStationaryShop\Stationaryshop\OnlineShop\src\main\resources
+2022-03-10 21:07:09,388 [Worker-8: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-03-10 21:07:09,389 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIt\OnlineStationaryShop\Stationaryshop\OnlineShop\src\test\resources
+2022-03-10 21:07:10,435 [Worker-7: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-03-10 21:07:10,435 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIt\OnlineStationaryShop\Stationaryshop\OnlineShop\src\main\resources
+2022-03-10 21:07:10,436 [Worker-7: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2022-03-10 21:07:10,437 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\GIt\OnlineStationaryShop\Stationaryshop\OnlineShop\src\test\resources
