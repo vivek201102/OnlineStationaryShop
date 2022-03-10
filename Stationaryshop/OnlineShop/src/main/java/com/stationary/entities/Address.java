@@ -1,5 +1,8 @@
 package com.stationary.entities;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class Address {
 	private String hNo;
 	private String address1;

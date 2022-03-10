@@ -10,10 +10,29 @@
 </head>
 <body>
 
-<div class="container" style="max-width:50%">
+	<nav class="navbar navbar-expand-lg navbar-white">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">JustorderUtil.com</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+				aria-controls="navbarNavAltMarkup" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+		
+			<div class="collapse navbar-collapse nav-right" id="navbarNavAltMarkup">
+				<div class="navbar-nav ">					 
+						<a class="nav-link mx-4" href="login"
+						tabindex="-1" aria-disabled="true">Login</a>
+				</div>
+			</div>
+		</div>
+	</nav>
+<div class="container" style="max-width:50%;">
 <h3>Register Your Self</h3>
 
-<form action="" method="POST" >
+<form action="saveuser" method="POST" >
 	<div class="mb-3">
     	<label for="name" class="form-label">Name</label>
     	<input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Name">
@@ -26,12 +45,12 @@
   
   <div class="mb-3">
     	<label for="mobile" class="form-label">Mobile</label>
-    	<input type="tel" class="form-control" id="moblie" name="moblie" pattern="[+]{0,1}[0,9]{12}" placeholder="Enter Your Mobile">
+    	<input type="text" class="form-control" id="moblie" name="mobile" placeholder="Enter Your Mobile">
   </div>
 
 	<div class="mb-3">
     	<label for="address" class="form-label">Address</label>
-    	<input type="text" class="form-control" id="address" name="hNO" placeholder="House No">
+    	<input type="text" class="form-control" id="address" name="hNo" placeholder="House No">
     	<input type="text" class="form-control" id="address" name="add1" placeholder="Address Line">
     	<input type="text" class="form-control" id="address" name="add2" placeholder="Street">
   	</div>
@@ -41,13 +60,13 @@
   </div>
   
   <div class="mb-3">
-    	<label for="pincode" class="form-label">Zip</label>
+    	<label for="pincode" class="form-label">Pincode</label>
     	<input type="text" class="form-control" id="pincode" name="pincode" placeholder="Pincode"> 
   </div>
   
   <div class="mb-3">
     	<label for="password" class="form-label">Password</label>
-    	<input type="password" class="form-control" id="password" name="password" placeholder="Enter Password">
+    	<input type="password" class="form-control" id="password" name="psw" placeholder="Enter Password">
   </div>
   
   <div class="mb-3">
@@ -57,7 +76,7 @@
   </div>
   
   <div class="mb-3">
-  	<button class="btn btn-success" type="submit">SUBMIT</button>
+  	<button class="btn btn-warning" type="submit">SUBMIT</button>
   </div>
 </form>
 

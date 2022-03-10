@@ -34,11 +34,11 @@ p:dataSource-ref="data">
 </property>
 <property name="annotatedClasses">
 <list>
-<value>com.stationary.Items.ProductDriver</value>
 <value>com.stationary.Items.Pen</value>
 <value>com.stationary.Items.Desk</value>
 <value>com.stationary.Items.Calc</value>
 <value>com.stationary.Items.Book</value>
+<value>com.stationary.entities.User</value>
 </list>
 </property>
 </bean>
@@ -52,6 +52,10 @@ p:sessionFactory-ref="sfb"/>
 <bean class="org.springframework.orm.hibernate5.HibernateTransactionManager" name="transactionManager" p:sessionFactory-ref="sfb"/>
 
    <!-- ++++++++++++++++ Here is Class that impliments Queries i created ++++++++++++++++++++--> 
-<bean class="com.stationary.jdbc.ImplimentInterfaceQuery" name="queryFetcher" p:ht-ref="ht"/>   
+<bean class="com.stationary.jdbc.UserDao" name="queryFetcherUser" p:ht-ref="ht"/>  
+<bean class="com.stationary.jdbc.PenDao" name="queryFetcherPen" p:ht-ref="ht"/>  
+<bean class="com.stationary.jdbc.CalcDao" name="queryFetcherCalc" p:ht-ref="ht"/>  
+<bean class="com.stationary.jdbc.DeskDao" name="queryFetcherDesk" p:ht-ref="ht"/>  
+<bean class="com.stationary.jdbc.BookDao" name="queryFetcherBook" p:ht-ref="ht"/>
 </beans>
 
