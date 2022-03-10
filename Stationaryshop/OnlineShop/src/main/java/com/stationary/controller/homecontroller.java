@@ -12,9 +12,21 @@ public class homecontroller {
 		return "index";
 	}
 	
+	@RequestMapping("/index")
+	public String index()
+	{
+		return home();
+	}
+	
 	@RequestMapping("/signup")
 	public String signup()
 	{
 		return "signup";
+	}
+	
+	@RequestMapping("/login")
+	public String login()
+	{
+		return "login";
 	}
 }

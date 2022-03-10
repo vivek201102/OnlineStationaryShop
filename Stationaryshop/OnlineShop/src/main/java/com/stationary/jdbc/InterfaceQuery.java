@@ -5,11 +5,18 @@ import com.stationary.Items.Calc;
 import com.stationary.Items.Desk;
 import com.stationary.Items.Pen;
 import com.stationary.Items.ProductDriver;
+import com.stationary.entities.User;
 
 public interface InterfaceQuery {
-public int insertProduct(ProductDriver p);
-public int insertBook(Book b);
-public int insertPen(Pen p);
-public int insertCalc(Calc c);
-public int insertDesk(Desk d);
+	public int insertProduct(ProductDriver p);
+
+	public int insertBook(Book b);
+
+	public int insertPen(Pen p);
+
+	public int insertCalc(Calc c);
+
+	public int insertDesk(Desk d);
+	
+	public int insertUser(User u);
 }

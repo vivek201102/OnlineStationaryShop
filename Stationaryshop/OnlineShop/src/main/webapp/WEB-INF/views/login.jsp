@@ -10,7 +10,33 @@
 <title>Login</title>
 </head>
 <body>
-<form class="container">
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">STUDENT.com</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+				aria-controls="navbarNavAltMarkup" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+		
+			<div class="collapse navbar-collapse nav-right" id="navbarNavAltMarkup">
+				<div class="navbar-nav ">
+					<a class="nav-link active mx-4" aria-current="page" href="index">Home</a> <a
+						class="nav-link" href="#">Products</a> 
+						<a class="nav-link mx-4"
+						href="#">Shop</a> 
+						<a class="nav-link mx-4" href="login"
+						tabindex="-1" aria-disabled="true">Login</a>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<div class="container" style="max-width:50%">
+<form>
+<h3>Login</h3>
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Email address</label>
     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -20,11 +46,12 @@
     <label for="exampleInputPassword1" class="form-label">Password</label>
     <input type="password" class="form-control" id="exampleInputPassword1">
   </div>
-  <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div>
+
   <button type="submit" class="btn btn-primary">Submit</button>
+  
 </form>
+<a href="signup" style="text-decoration:none; color:black;">New User?</a><span> | </span>
+<a href="#" style="text-decoration:none; color:black;">Forgot Password?</a>
+</div>
 </body>
 </html>

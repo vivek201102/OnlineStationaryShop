@@ -18,9 +18,9 @@
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
 <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" name="data"
 p:driverClassName="com.mysql.cj.jdbc.Driver"
-p:url="jdbc:mysql://localhost:3306/spring"
+p:url="jdbc:mysql://localhost:3306/jt_project"
 p:username="root"
-p:password="2002"
+p:password="201102"
 />
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
 <bean class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" name="sfb"

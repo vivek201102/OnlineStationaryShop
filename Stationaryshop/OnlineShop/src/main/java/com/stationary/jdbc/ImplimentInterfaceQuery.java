@@ -7,6 +7,7 @@ import com.stationary.Items.Calc;
 import com.stationary.Items.Desk;
 import com.stationary.Items.Pen;
 import com.stationary.Items.ProductDriver;
+import com.stationary.entities.User;
 
 public class ImplimentInterfaceQuery implements InterfaceQuery {
 private HibernateTemplate ht;
@@ -35,10 +36,15 @@ private HibernateTemplate ht;
 		return (int) ht.save(d);
 	}
 
+	@Override
+	public int insertUser(User u) {
+		return (int) ht.save(u);
+	}
+	
 	public HibernateTemplate getHt() {
 		return ht;
 	}
-
+	
 	public void setHt(HibernateTemplate ht) {
 		this.ht = ht;
 	}
