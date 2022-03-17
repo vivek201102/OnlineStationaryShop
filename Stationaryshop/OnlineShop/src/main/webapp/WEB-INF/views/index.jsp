@@ -21,7 +21,7 @@
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#">STUDENT.com</a>
+			<a class="navbar-brand" href="#">BOOK.com</a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
 				aria-controls="navbarNavAltMarkup" aria-expanded="false"
@@ -36,9 +36,16 @@
 						class="nav-link" href="#">Products</a> 
 						<a class="nav-link mx-4"
 						href="#">Shop</a> 
-						<a class="nav-link mx-4" href="login"
-						tabindex="-1" aria-disabled="true">Login</a>
+						
 				</div>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+				<div class="nav-right"><a class="nav-link mx-4" href="#"
+						tabindex="-1" aria-disabled="true">${user.name}</a></div>
 			</div>
 		</div>
 	</nav>

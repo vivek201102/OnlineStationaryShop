@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@page isELIgnored="false" %>
+     <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,51 +12,32 @@
 </head>
 <body>
 
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="#">STUDENT.com</a>
-			<button class="navbar-toggler" type="button"
-				data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-				aria-controls="navbarNavAltMarkup" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-
-		
-			<div class="collapse navbar-collapse nav-right" id="navbarNavAltMarkup">
-				<div class="navbar-nav ">
-					<a class="nav-link active mx-4" aria-current="page" href="index">Home</a> <a
-						class="nav-link" href="#">Products</a> 
-						<a class="nav-link mx-4"
-						href="#">Shop</a> 
-						<a class="nav-link mx-4" href="login"
-						tabindex="-1" aria-disabled="true">Login</a>
-				</div>
-			</div>
-		</div>
-	</nav>
+	<div style="text-align:center;">
+<h3 style="color:blue;">BOOKS.com</h3>
+<h6>Enjoy your stationary Buying....</h6>
+</div>
 <div class="container" style="max-width:50%">
 <h3>Register Your Self</h3>
 
-<form action="" method="POST" >
+<form action="adduser" method="POST" >
 	<div class="mb-3">
     	<label for="name" class="form-label">Name</label>
     	<input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Name">
   </div>
   
   <div class="mb-3">
-    	<label for="email" class="form-label">Email</label>
+    	<label for="email" class="form-label">Email </label><span style="color:red;s">${error }</span>
     	<input type="email" class="form-control" id="email" name="email" placeholder="Enter Your Email">
   </div>
   
   <div class="mb-3">
     	<label for="mobile" class="form-label">Mobile</label>
-    	<input type="tel" class="form-control" id="moblie" name="moblie" pattern="[+]{0,1}[0,9]{12}" placeholder="Enter Your Mobile">
+    	<input type="text" class="form-control" id="mobile" name="mobile" placeholder="Enter Your Mobile">
   </div>
 
 	<div class="mb-3">
     	<label for="address" class="form-label">Address</label>
-    	<input type="text" class="form-control" id="address" name="hNO" placeholder="House No">
+    	<input type="text" class="form-control" id="address" name="hNo" placeholder="House No">
     	<input type="text" class="form-control" id="address" name="add1" placeholder="Address Line">
     	<input type="text" class="form-control" id="address" name="add2" placeholder="Street">
   	</div>
@@ -81,6 +64,7 @@
   
   <div class="mb-3">
   	<button class="btn btn-success" type="submit">SUBMIT</button>
+  <a href="login" style="text-decoration:none; color:black;">Already User?</a>
   </div>
 </form>
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:p="http://www.springframework.org/schema/p"
@@ -14,19 +14,72 @@
     	http://www.springframework.org/schema/tx/spring-tx.xsd
     	http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-        
-        <!-- context (base package) -->
-	<context:component-scan base-package="com.stationary" />
-	
-	
+
+	<!-- context (base package) -->
+	<context:component-scan
+		base-package="com.stationary" />
+
+	<tx:annotation-driven/>
 	<!-- annotation -->
 	<mvc:annotation-driven />
-<mvc:resources location="/WEB-INF/resources/" mapping="/resources/**" /> 
+	<mvc:resources location="/WEB-INF/resources/"
+		mapping="/resources/**" />
+		
+	<bean name="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+		
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-	        
-        
+
+	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" name="ds">
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost/jt_project" />
+		<property name="username" value="root" />
+		<property name="password" value="201102" />
+	
+	</bean>
+	
+	<bean class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" name="factory">
+	
+		<property name="dataSource" ref="ds" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.formate_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+		<property name="annotatedClasses">
+			<list>
+				<value>
+					com.stationary.entities.User
+				</value>
+				<value>
+					com.stationary.Items.Book
+				</value>
+				<value>
+					com.stationary.Items.Desk
+				</value>
+				<value>
+					com.stationary.Items.Pen
+				</value>
+				<value>
+					com.stationary.Items.Calc
+				</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean name="jt" class="org.springframework.jdbc.core.JdbcTemplate">
+
+<property name="dataSource" ref="ds"/>
+
+</bean>
+	<bean class="org.springframework.orm.hibernate5.HibernateTemplate" name="ht" p:sessionFactory-ref="factory" />
+	
+	<bean class="org.springframework.orm.hibernate5.HibernateTransactionManager" name="transactionManager" p:sessionFactory-ref="factory" />
+
 </beans>

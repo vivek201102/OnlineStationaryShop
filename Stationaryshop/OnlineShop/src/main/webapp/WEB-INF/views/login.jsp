@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@page isELIgnored="false" %>
+     <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,41 +12,22 @@
 <title>Login</title>
 </head>
 <body>
-
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="#">STUDENT.com</a>
-			<button class="navbar-toggler" type="button"
-				data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-				aria-controls="navbarNavAltMarkup" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-
-		
-			<div class="collapse navbar-collapse nav-right" id="navbarNavAltMarkup">
-				<div class="navbar-nav ">
-					<a class="nav-link active mx-4" aria-current="page" href="index">Home</a> <a
-						class="nav-link" href="#">Products</a> 
-						<a class="nav-link mx-4"
-						href="#">Shop</a> 
-						<a class="nav-link mx-4" href="login"
-						tabindex="-1" aria-disabled="true">Login</a>
-				</div>
-			</div>
-		</div>
-	</nav>
+<div style="text-align:center;">
+<h3 style="color:blue;">BOOKS.com</h3>
+<h6>Enjoy your stationary Buying....</h6>
+</div>
 	<div class="container" style="max-width:50%">
-<form>
+<form method="post" action="checkuser">
 <h3>Login</h3>
+<span style="color:red;">${error}</span>
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
   </div>
   <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1">
+    <input type="password" class="form-control" id="exampleInputPassword1" name="password">
   </div>
 
   <button type="submit" class="btn btn-primary">Submit</button>

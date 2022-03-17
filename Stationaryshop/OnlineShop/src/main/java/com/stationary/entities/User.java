@@ -11,13 +11,12 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private String cid;
 	private String name;
 	private String password;
 	private String mobile;
 	private String email;
-	private String gender;
 	private String lastLogin;
+	
 	private Address address;
 	
 	public User() {
@@ -27,16 +26,13 @@ public class User {
 
 
 
-	public User(int id, String cid, String name, String password, String mobile, String email, String gender,
+	public User(String name, String password, String mobile, String email,
 			String lastLogin, Address address) {
 		super();
-		this.id = id;
-		this.cid = cid;
 		this.name = name;
 		this.password = password;
 		this.mobile = mobile;
 		this.email = email;
-		this.gender = gender;
 		this.lastLogin = lastLogin;
 		this.address = address;
 	}
@@ -57,15 +53,10 @@ public class User {
 
 
 
-	public String getCid() {
-		return cid;
-	}
 
 
 
-	public void setCid(String cid) {
-		this.cid = cid;
-	}
+
 
 
 
@@ -117,15 +108,9 @@ public class User {
 
 
 
-	public String getGender() {
-		return gender;
-	}
 
 
 
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
 
 
 
@@ -155,10 +140,13 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", cid=" + cid + ", name=" + name + ", password=" + password + ", mobile=" + mobile
-				+ ", email=" + email + ", gender=" + gender + ", lastLogin=" + lastLogin + ", address=" + address + "]";
+		return "User [id=" + id + ", name=" + name + ", password=" + password + ", mobile=" + mobile + ", email="
+				+ email + ", lastLogin=" + lastLogin + ", address=" + address + "]";
 	}
-	
+
+
+
+
 	
 	
 	
