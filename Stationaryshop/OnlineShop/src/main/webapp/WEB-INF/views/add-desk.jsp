@@ -21,22 +21,22 @@
 		<form action="adddesk" method="post" enctype="multipart/form-data">
 			  <div class="form-group">
     <label for="pid">Enter Product ID</label>
-    <input type="text" class="form-control" id="pid" placeholder="Product ID" name="pid">
+    <input type="text" class="form-control" id="pid" placeholder="Product ID" name="pId">
   </div>
 
   <div class="form-group">
     <label for="pname">Enter Product Name</label>
-    <input type="text" class="form-control" id="pname" placeholder="Product Name" name="pname">
+    <input type="text" class="form-control" id="pname" placeholder="Product Name" name="pName">
   </div>
 
   <div class="form-group">
     <label for="pdesc">Enter Product Description</label>
-    <input type="text" class="form-control" id="pdes" placeholder="Product Description" name="pdesc">
+    <input type="text" class="form-control" id="pdes" placeholder="Product Description" name="des">
   </div>
 
 <div class="form-group">
     <label for="pid">Enter Product Company</label>
-    <input type="text" class="form-control" id="pcomp" placeholder="Product Company" name="compname">
+    <input type="text" class="form-control" id="pcomp" placeholder="Product Company" name="compName">
   </div>
 
 <div class="form-group">
@@ -57,7 +57,7 @@
 
 <div class="form-group">
     <label for="pid">Upload Pic</label>
-    <input type="file" class="form-control" id="pic" name="pic">
+    <input type="text" class="form-control" id="pic" name="image">
   </div>
   <br>
   <button type="submit" class="btn btn-primary">Submit</button>

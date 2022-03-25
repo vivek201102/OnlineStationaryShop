@@ -31,10 +31,11 @@ public class PenDao{
 		return 0;
 	}
 
-
+	@Transactional
 	public int updateObj(Pen p) {
 		// TODO Auto-generated method stub
-		return 0;
+		this.ht.update(p);
+		return 1;
 	}
 
 	public Pen getOneObj(int id) {

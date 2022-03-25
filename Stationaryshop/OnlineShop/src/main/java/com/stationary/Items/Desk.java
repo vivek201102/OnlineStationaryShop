@@ -27,14 +27,14 @@ private String compName;
 private int price;
 private int stock;
 private String material;
-@Lob
-private byte[] image;
+
+private String image;
 public Desk() {
 	super();
 	// TODO Auto-generated constructor stub
 }
 public Desk(String pId, String pName, String des, String compName, int price, int stock, String material,
-		byte[] image) {
+		String image) {
 	super();
 	this.pId = pId;
 	this.pName = pName;
@@ -48,7 +48,7 @@ public Desk(String pId, String pName, String des, String compName, int price, in
 @Override
 public String toString() {
 	return "Desk [pId=" + pId + ", pName=" + pName + ", des=" + des + ", compName=" + compName + ", price=" + price
-			+ ", stock=" + stock + ", material=" + material + ", image=" + Arrays.toString(image) + "]";
+			+ ", stock=" + stock + ", material=" + material + ", image=" + image + "]";
 }
 public String getpId() {
 	return pId;
@@ -92,10 +92,10 @@ public String getMaterial() {
 public void setMaterial(String material) {
 	this.material = material;
 }
-public byte[] getImage() {
+public String getImage() {
 	return image;
 }
-public void setImage(byte[] image) {
+public void setImage(String image) {
 	this.image = image;
 }
 
