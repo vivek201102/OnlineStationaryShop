@@ -15,22 +15,22 @@
 <body>
 	<div class="container">
 		<h3>Add Book</h3>
-		<form action="addbook" method="POST" enctype="multipart/form-data">
+		<form action="addbook" method="POST">
 	<div class="mb-3">
     	<label for="pid" class="form-label">Product ID</label>
-    	<input type="text" class="form-control" id="pid" name="pid" placeholder="Enter Product ID">
+    	<input type="text" class="form-control" id="pId" name="pId" placeholder="Enter Product ID">
   </div>
   <div class="mb-3">
     	<label for="pname" class="form-label">Product Name</label>
-    	<input type="text" class="form-control" id="pname" name="pname" placeholder="Enter Product Name">
+    	<input type="text" class="form-control" id="pName" name="pName" placeholder="Enter Product Name">
   </div>
   <div class="mb-3">
     	<label for="pdesc" class="form-label">Product Description</label>
-    	<input type="text" class="form-control" id="pdesc" name="pdesc" placeholder="Enter Product Description">
+    	<input type="text" class="form-control" id="des" name="des" placeholder="Enter Product Description">
   </div>
   <div class="mb-3">
     	<label for="compname" class="form-label">Publisher</label>
-    	<input type="text" class="form-control" id="compname" name="compname" placeholder="Publisher">
+    	<input type="text" class="form-control" id="compName" name="compName" placeholder="Publisher">
   </div>
   <div class="mb-3">
     	<label for="price" class="form-label">Price</label>
@@ -51,8 +51,8 @@
   </div>
   
   <div class="mb-3">
-    	<label for="pic" class="form-label">Picture</label>
-    	<input type="file" class="form-control" id="pic" name="pic">
+    	<label for="pic" class="form-label">Picture Url</label>
+    	<input type="text" class="form-control" id="image" name="image">
   </div>
   
     <div class="mb-3">

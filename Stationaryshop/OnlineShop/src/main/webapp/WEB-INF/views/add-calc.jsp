@@ -20,44 +20,44 @@
 	<h3>Add Calc</h3>
 		<form action="addcalc" method="post" enctype="multipart/form-data">
 			  <div class="form-group">
-    <label for="pid">Enter Product ID</label>
-    <input type="text" class="form-control" id="pid" placeholder="Product ID" name="pid">
+    <label for="pId">Enter Product ID</label>
+    <input type="text" class="form-control" id="pId" placeholder="Product ID" name="pId">
   </div>
 
   <div class="form-group">
-    <label for="pname">Enter Product Name</label>
-    <input type="text" class="form-control" id="pname" placeholder="Product Name" name="pname">
+    <label for="pName">Enter Product Name</label>
+    <input type="text" class="form-control" id="pName" placeholder="Product Name" name="pName">
   </div>
 
   <div class="form-group">
-    <label for="pdesc">Enter Product Description</label>
-    <input type="text" class="form-control" id="pdes" placeholder="Product Description" name="pdesc">
+    <label for="des">Enter Product Description</label>
+    <input type="text" class="form-control" id="des" placeholder="Product Description" name="des">
   </div>
 
 <div class="form-group">
-    <label for="pid">Enter Product Company</label>
-    <input type="text" class="form-control" id="pcomp" placeholder="Product Company" name="compname">
+    <label for="pcomp">Enter Product Company</label>
+    <input type="text" class="form-control" id="pcomp" placeholder="Product Company" name="compName">
   </div>
 
 <div class="form-group">
-    <label for="pid">Enter Product Price</label>
+    <label for="price">Enter Product Price</label>
     <input type="number" class="form-control" id="price" name="price">
   </div>
 
 <div class="form-group">
-    <label for="pid">Enter Product Stock</label>
+    <label for="stock">Enter Product Stock</label>
     <input type="number" class="form-control" id="stock" name="stock">
   </div>
 
 <div class="form-group">
-    <label for="pid">Enter Type</label>
+    <label for="type">Enter Type</label>
     <input type="text" class="form-control" id="author" placeholder="Type" name="type">
   </div>
 
 
 <div class="form-group">
-    <label for="pid">Upload Pic</label>
-    <input type="file" class="form-control" id="pic" name="pic">
+    <label for="pic">Upload Pic</label>
+    <input type="text" class="form-control" id="pic" name="image">
   </div>
   <br>
   <button type="submit" class="btn btn-primary">Submit</button>

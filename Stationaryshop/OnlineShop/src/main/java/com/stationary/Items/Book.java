@@ -23,8 +23,7 @@ public class Book {
 	private int stock;
 	private String author;
 	private int pages;
-	@Lob
-	private byte[] image;
+	private String image;
 
 	public Book() {
 		super();
@@ -32,7 +31,7 @@ public class Book {
 	}
 
 	public Book(String pId, String pName, String des, String compName, int price, int stock, String author, int pages,
-			byte[] image) {
+			String image) {
 		super();
 		this.pId = pId;
 		this.pName = pName;
@@ -117,18 +116,18 @@ public class Book {
 		this.pages = pages;
 	}
 
-	public byte[] getImage() {
+	public String getImage() {
 		return image;
 	}
 
-	public void setImage(byte[] image) {
+	public void setImage(String image) {
 		this.image = image;
 	}
 
 	@Override
 	public String toString() {
 		return "Book [pId=" + pId + ", pName=" + pName + ", des=" + des + ", compName=" + compName + ", price=" + price
-				+ ", stock=" + stock + ", author=" + author + ", pages=" + pages + ", image=" + Arrays.toString(image)
+				+ ", stock=" + stock + ", author=" + author + ", pages=" + pages + ", image=" + image
 				+ "]";
 	}
 

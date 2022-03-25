@@ -21,8 +21,7 @@ public class Pen {
 	private int price; 
 	private int stock;
 	private String color;
-	@Lob
-	private byte[] image;
+	private String image;
 
 	public Pen() {
 		super();
@@ -30,7 +29,7 @@ public class Pen {
 	}
 
 	public Pen(String pId, String pName, String des, String compName, int price, int stock, String color,
-			byte[] image) {
+			String image) {
 		super();
 		this.pId = pId;
 		this.pName = pName;
@@ -45,7 +44,7 @@ public class Pen {
 	@Override
 	public String toString() {
 		return "Pen [pId=" + pId + ", pName=" + pName + ", des=" + des + ", compName=" + compName + ", price=" + price
-				+ ", stock=" + stock + ", color=" + color + ", image=" + Arrays.toString(image) + "]";
+				+ ", stock=" + stock + ", color=" + color + ", image=" + image + "]";
 	}
 
 	public String getpId() {
@@ -104,11 +103,11 @@ public class Pen {
 		this.color = color;
 	}
 
-	public byte[] getImage() {
+	public String getImage() {
 		return image;
 	}
 
-	public void setImage(byte[] image) {
+	public void setImage(String image) {
 		this.image = image;
 	}
 

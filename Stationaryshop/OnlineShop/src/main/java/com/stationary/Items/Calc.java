@@ -21,8 +21,7 @@ public class Calc {
 	private int price;
 	private int stock;
 	private String type;
-	@Lob
-	private byte[] image;
+	private String image;
 
 	public Calc() {
 		super();
@@ -30,7 +29,7 @@ public class Calc {
 	}
 
 	public Calc(String pId, String pName, String des, String compName, int price, int stock, String type,
-			byte[] image) {
+			String image) {
 		super();
 		this.pId = pId;
 		this.pName = pName;
@@ -45,7 +44,7 @@ public class Calc {
 	@Override
 	public String toString() {
 		return "Calc [pId=" + pId + ", pName=" + pName + ", des=" + des + ", compName=" + compName + ", price=" + price
-				+ ", stock=" + stock + ", type=" + type + ", image=" + Arrays.toString(image) + "]";
+				+ ", stock=" + stock + ", type=" + type + ", image=" + image + "]";
 	}
 
 	public String getpId() {
@@ -112,11 +111,11 @@ public class Calc {
 		this.type = type;
 	}
 
-	public byte[] getImage() {
+	public String getImage() {
 		return image;
 	}
 
-	public void setImage(byte[] image) {
+	public void setImage(String image) {
 		this.image = image;
 	}
 
