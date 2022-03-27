@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.stationary.Items.*;
 import com.stationary.dao.*;
+import com.stationary.entities.User;
 
 @Controller
 public class admincontroller {
@@ -30,6 +31,9 @@ public class admincontroller {
 	
 	@Autowired
 	CalcDao calcdao;
+	
+	@Autowired
+	UserDao userdao;
 	
 	@RequestMapping("/bookform")
 	public String bookForm()
@@ -55,8 +59,17 @@ public class admincontroller {
 		return "add-desk";
 	}
 	
-	@RequestMapping(path = "/admin")
-	public ModelAndView admin()
+	@RequestMapping("/admin-customer")
+	public ModelAndView adminCus()
+	{
+		List<User> users = userdao.getAllUser();
+		ModelAndView model = new ModelAndView("admin-customer");
+		model.addObject("users", users);
+		return model;
+	}
+	
+	@RequestMapping(path = "/admin-product")
+	public ModelAndView adminprod()
 	{
 		List<Book> books = this.bookdao.getall();
 		List<Pen> pens = this.pendao.getall();
@@ -207,5 +220,6 @@ public class admincontroller {
 		calcdao.updateObj(calc);
 		return new ModelAndView("redirect:admin");
 	}
+	
 	
 }

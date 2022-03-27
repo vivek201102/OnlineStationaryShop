@@ -3,6 +3,10 @@ package com.stationary.controller;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,26 +14,50 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.stationary.Items.Book;
+import com.stationary.Items.Calc;
+import com.stationary.Items.Desk;
+import com.stationary.Items.Pen;
+import com.stationary.dao.BookDao;
+import com.stationary.dao.CalcDao;
+import com.stationary.dao.DeskDao;
+import com.stationary.dao.PenDao;
+import com.stationary.dao.UserCartDao;
 import com.stationary.dao.UserDao;
 import com.stationary.entities.Address;
 import com.stationary.entities.User;
+import com.stationary.order.UserCart;
+
+
 
 @Controller
 public class homecontroller {
+	
+
 	@Autowired
 	private UserDao user;
 	
+	@Autowired
+	private BookDao bookdao;
+	
+	@Autowired
+	private DeskDao deskdao;
+	
+	@Autowired
+	private PenDao pendao;
+	
+	@Autowired
+	private CalcDao calcdao;
+	
+	@Autowired
+	private UserCartDao usercartdao;
+	
 	@RequestMapping("/")
-	public String home()
+	public String homefun()
 	{
 		return "login";
-	}
-	
-	@RequestMapping("/index")
-	public String index()
-	{
-		return home();
 	}
 	
 	@RequestMapping("/signup")
@@ -73,20 +101,94 @@ public class homecontroller {
 		}
 	}
 	
-	@RequestMapping("/checkuser")
-	private String check(@RequestParam("email") String email, @RequestParam("password") String psw, Model model)
+	@RequestMapping("book")
+	public ModelAndView prodbook(HttpServletRequest request)
+	{
+		ModelAndView model = new ModelAndView("book");
+		HttpSession session = request.getSession();
+		User u = (User) session.getAttribute("user");
+
+		List<Book> book;
+		List<UserCart> usercart;
+		usercart = usercartdao.getcart(u.getId());
+		book = bookdao.getall();
+		model.addObject("cartitem", usercart);
+		model.addObject("books", book);
+		return model;
+	}
+	
+	@RequestMapping("calc")
+	public ModelAndView prodcalc(HttpServletRequest request)
+	{
+		ModelAndView model = new ModelAndView("calc");
+		HttpSession session = request.getSession();
+		User u = (User) session.getAttribute("user");
+
+		List<Calc> calc;
+		List<UserCart> usercart;
+		usercart = usercartdao.getcart(u.getId());
+		calc = calcdao.getall();
+		model.addObject("cartitem", usercart);
+		model.addObject("calcs", calc);
+		return model;
+	}
+	
+	@RequestMapping("desk")
+	public ModelAndView proddesk(HttpServletRequest request)
+	{
+		ModelAndView model = new ModelAndView("desk");
+		HttpSession session = request.getSession();
+		User u = (User) session.getAttribute("user");
+
+		List<Desk> desk;
+		List<UserCart> usercart;
+		usercart = usercartdao.getcart(u.getId());
+		desk = deskdao.getall();
+		model.addObject("cartitem", usercart);
+		model.addObject("desks", desk);
+		return model;
+	}
+	
+	@RequestMapping("pen")
+	public ModelAndView prodpen(HttpServletRequest request)
+	{
+		ModelAndView model = new ModelAndView("pen");
+		HttpSession session = request.getSession();
+		User u = (User) session.getAttribute("user");
+
+		List<Pen> pen;
+		List<UserCart> usercart;
+		usercart = usercartdao.getcart(u.getId());
+		pen = pendao.getall();
+		model.addObject("cartitem", usercart);
+		model.addObject("pens", pen);
+		return model;
+	}
+	
+	@RequestMapping(path="home")
+	public ModelAndView home()
+	{
+		ModelAndView model = new ModelAndView("home");
+
+		return model;
+	}
+	
+	@RequestMapping(path="/checkuser", method=RequestMethod.POST)
+	private ModelAndView check(@RequestParam("email") String email, @RequestParam("password") String psw, HttpServletRequest request)
 	{
 		User u = user.getUser(email, psw);
 		if(u == null)
 		{
-			model.addAttribute("error", "User not Found!!!");
-			return "login";
+			ModelAndView model =new ModelAndView("login");
+			model.addObject("error", "User not Found!!!");
+			return model;
 		}
 		else
 		{
-		
-			model.addAttribute("user", u);
-			return "index";
+			ModelAndView model = new ModelAndView("redirect:home");
+			HttpSession session = request.getSession();
+			session.setAttribute("user", u);
+			return model;
 		}
 		
 	}

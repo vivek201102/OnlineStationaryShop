@@ -1,5 +1,7 @@
 package com.stationary.dao;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,7 +64,14 @@ public class UserDao {
 			}
 	}
 	
-	
+	public List<User> getAllUser()
+	{
+		List<User> userlist = this.ht.loadAll(User.class);
+		if(userlist != null)
+			return userlist;
+		else
+			return null;
+	}
 	
 	public User getUser(String email, String pass)
 	{

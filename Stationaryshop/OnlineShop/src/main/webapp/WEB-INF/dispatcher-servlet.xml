@@ -69,6 +69,12 @@
 				<value>
 					com.stationary.Items.Calc
 				</value>
+				<value>
+					com.stationary.order.CartGenerate
+				</value>
+				<value>
+					com.stationary.order.UserCart
+				</value>
 			</list>
 		</property>
 	</bean>

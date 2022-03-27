@@ -1,0 +1,120 @@
+.demotbl {
+    border: 0px solid #69899F;
+  }
+.demotbl th{
+    padding:15px;
+    color:#fff;
+    text-shadow:1px 1px 1px #568F23;
+    border-bottom:3px solid #9ED929;
+    background-color:orange;
+    -webkit-border-top-left-radius:5px;
+    -webkit-border-top-right-radius:5px;
+    font-size: 20px;
+    -moz-border-radius:5px 5px 0px 0px;
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+  }
+.demotbl td{
+    width:250px;
+    padding:10px;
+    text-align:center;
+    vertical-align: top;
+    background-color: #FFD580;
+    border: 1px solid #BED3AB;
+    -moz-border-radius:2px;
+    -webkit-border-radius:2px;
+    border-radius:2px;
+    color:#666;
+    font-size: 20px;
+    text-shadow:1px 1px 1px #fff;
+
+  }
+.demotbl1 {
+  border: 0px solid #69899F;
+  }
+.demotbl1 th{
+    padding:15px;
+    color:#fff;
+    font-size: 20px;
+    text-shadow:1px 1px 1px #568F23;
+    border-bottom:3px solid #9ED929;
+    background-color:orange;
+    -webkit-border-top-left-radius:5px;
+    -webkit-border-top-right-radius:5px;
+    -moz-border-radius:5px 5px 0px 0px;
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+  }
+.demotbl1 td{
+    width:1500px;
+    padding:10px;
+    text-align:center;
+    vertical-align: top;
+    font-size: 20px;
+    background-color: #FFD580;
+    border: 1px solid #BED3AB;
+    -moz-border-radius:2px;
+    -webkit-border-radius:2px;
+    border-radius:2px;
+    color:#666;
+    text-shadow:1px 1px 1px #fff;
+
+  }
+  .btn {
+  background-color: #FFD580;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  cursor: pointer;
+}
+.btn:hover{
+  background-color: orange;
+}
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: #fff;
+  -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 2rem 9%;
+}
+.header .logo {
+  font-size: 2.5rem;
+  font-weight: bolder;
+  color: #222;
+    text-decoration: none;
+    letter-spacing: 2px;
+}
+
+
+.header .navbar a {
+  font-size: 1.7rem;
+  color: #666;
+  margin: 0 1rem;
+    text-decoration: none;
+    letter-spacing: 2px;
+}
+
+.header .navbar a:hover {
+  color: orange;
+}
