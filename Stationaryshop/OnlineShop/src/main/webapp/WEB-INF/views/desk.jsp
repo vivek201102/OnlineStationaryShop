@@ -5,8 +5,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>deskulator</title>
-<link rel="stylesheet" href="<c:url value="resources/css/view_product.css" /> ">
+<title>desk</title>
+<link rel="stylesheet" href="<c:url value="resources/css/show.css" />">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <header class="header">
@@ -17,40 +19,51 @@
         <a href="home.jsp">Home</a>
         <a href="view_product.jsp">Product</a>
         <a href="view_past_order.jsp">Past Order</a>
-        <a href="cart.jsp">View Cart</a>
+        <a href="cart">View Cart</a>
         <a href="#">LogOut</a>
     </nav>
 </header>
-<br><br><br><br><br><br>
-<table class="demotbl">
-  <tr>
-      <th>Product ID</th>
-      <th>Product Name</th>
-      <th>Product Description</th>
-      <th>Company name</th>
-      <th>Price</th>
-      <th>Stock</th>
-      <th>Material</th>
-      <th>Image</th>
-      <th>Add to Cart</th>
-  </tr>
 
-  <tr>
-  <c:forEach var="desk" items="${desks}">
-      <td>${ desk.getpId()}</td>
-      <td>${ desk.getpName()}</td>
-      <td>${desk.getDes() }</td>
-      <td>${desk.getCompName() }</td>
-      <td>${ desk.getPrice()}</td>
-      <td>${ desk.getStock()}</td>
-      <td>${ desk.getMaterial()}</td>
-      <td><img src="${desk.getImage() }" height="250" width="200"></td>
-            <td class="${desk.getpId() }" style="display:none;"><button class="btn" onclick="return removeFromCart(['${desk.getpId() }','${desk.getpName() }', '${desk.getPrice() }', '1'])">Remove From Cart</button></td>
-      <td class="${desk.getpId() }"><button class="btn" onclick="return addToCart(['${desk.getpId() }','${desk.getpName() }', '${desk.getPrice() }', '1'])">Add To Cart</button></td>
-  </tr>
-  </c:forEach>
+<div class="heading">
+    <h1>our shop</h1>
+    <p> <a href="home.jsp">home >></a> shop </p>
+</div>
 
-</table>
+<section class="products">
+
+    <h1 class="title"> our <span>desk products</span>  </h1>
+
+    <div class="box-container">
+
+<c:forEach var="desk" items="${desks}">
+
+        <div class="box">
+            <div class="icons ${desk.getpId() }" onclick="return addToCart(['${desk.getpId() }','${desk.getpName() }', '${desk.getPrice() }', '1', '${desk.getImage() }'])">
+                <a href="#" class="fas fa-shopping-cart"></a>
+            </div>
+            <div class="icons ${desk.getpId() }" style="display:none;" onclick="return removeFromCart(['${desk.getpId() }'])">
+                <a href="#" class="fa fa-trash-o"></a>
+            </div>
+            <div class="image">
+                <img src="${desk.getImage() }" alt="" height="10" width="150">
+            </div>
+            <div class="content">
+                <h3>${desk.getpName() }</h3>
+                <h2>Company Name : ${desk.getCompName() }</h2>
+                <h2>Product Description : ${desk.getDes() }</h2>
+                <h2>Product ID    : ${desk.getpId() }</h2>
+      <h2>Stock : ${desk.getStock() }<h2>
+      <h2>Material : ${desk.getMaterial() }<h2>
+                <div class="price">${desk.getPrice() } Rs.</div>
+
+            </div>
+        </div>
+        
+        </c:forEach>
+  
+    </div>
+
+</section>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>
 	function addToCart(a)
@@ -65,10 +78,31 @@
 				id:a[0],
 				price:a[2],
 				qty:a[3],
+				image:a[4],
 			},
 			
 			success:function(data){
-				x[0].style.display = "grid";
+				x[0].style.display = "none";
+				x[1].style.display="flex";
+			}
+		})
+	}
+</script>
+<script>
+
+	function removeFromCart(a)
+	{
+		var x = document.getElementsByClassName(a[0]);
+		
+		$.ajax({
+			type:"POST",
+			url:"deleteQty",
+			data:{
+				id:a[0],
+			},
+			
+			success:function(data){
+				x[0].style.display = "flex";
 				x[1].style.display="none";
 			}
 		})

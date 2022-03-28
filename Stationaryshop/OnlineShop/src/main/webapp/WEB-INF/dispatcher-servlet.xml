@@ -75,6 +75,9 @@
 				<value>
 					com.stationary.order.UserCart
 				</value>
+				<value>
+					com.stationary.order.Orderdetail
+				</value>
 			</list>
 		</property>
 	</bean>

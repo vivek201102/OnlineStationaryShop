@@ -17,12 +17,16 @@ public class UserCart {
 	private String prodId;
 	private int prodPrice;
 	private int prodCount;
+	private String prodImage;
+	private int prodTotal;
+	
 	public UserCart() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	public UserCart(int id, int userId, int cartId, String datetime, String prodName, String prodId, int prodPrice,
-			int prodCount) {
+			int prodCount, String prodImage) {
 		super();
 		this.id = id;
 		this.userId = userId;
@@ -32,6 +36,7 @@ public class UserCart {
 		this.prodId = prodId;
 		this.prodPrice = prodPrice;
 		this.prodCount = prodCount;
+		this.prodImage = prodImage;
 	}
 	public int getId() {
 		return id;
@@ -81,6 +86,25 @@ public class UserCart {
 	public void setProdCount(int prodCount) {
 		this.prodCount = prodCount;
 	}
+
+	public String getProdImage() {
+		return prodImage;
+	}
+
+	public void setProdImage(String prodImage) {
+		this.prodImage = prodImage;
+	}
+
+	public int getProdTotal() {
+		return prodTotal;
+	}
+
+	public void setProdTotal(int prodTotal) {
+		this.prodTotal = prodTotal;
+	}
 	
-	
+	public void count()
+	{
+		this.prodTotal = this.prodCount * this.prodPrice;
+	}
 }

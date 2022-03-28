@@ -6,7 +6,9 @@
 <html>
 <head>
 <title>Book</title>
-<link rel="stylesheet" href="<c:url value="resources/css/view_product.css" />">
+<link rel="stylesheet" href="<c:url value="resources/css/show.css" />">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <header class="header">
@@ -17,43 +19,54 @@
         <a href="home.jsp">Home</a>
         <a href="view_product.jsp">Product</a>
         <a href="view_past_order.jsp">Past Order</a>
-        <a href="cart.jsp">View Cart</a>
+        <a href="cart">View Cart</a>
         <a href="#">LogOut</a>
     </nav>
 </header>
-<br><br><br><br><br><br>
-<table class="demotbl">
-  <tr>
-     
-      <th>Product ID</th>
-      <th>Product Name</th>
-      <th>Product Description</th>
-      <th>Company name</th>
-      <th>Price</th>
-      <th>Stock</th>
-      <th>Author</th>
-      <th>Pages</th>
-      <th>Image</th>
-      <th>Add to Cart</th>
-  </tr>
-  <c:forEach var="book" items="${books}">
-  <tr>
 
-      <td>${book.getpId() }</td>
-      <td>${book.getpName() }</td>
-      <td>${book.getDes() }</td>
-      <td>${book.getCompName() }</td>
-      <td>${book.getPrice() }</td>
-      <td>${book.getStock() }</td>
-      <td>${book.getAuthor() }</td>
-      <td>${book.getPages() }</td>
-      <td><img src="${book.getImage() }" height="300" width="150"></td>
-      <td class="${book.getpId() }" style="display:none;"><button class="btn" onclick="return removeFromCart(['${book.getpId() }','${book.getpName() }', '${book.getPrice() }', '1'])">Remove From Cart</button></td>
-      <td class="${book.getpId() }"><button class="btn" onclick="return addToCart(['${book.getpId() }','${book.getpName() }', '${book.getPrice() }', '1'])">Add To Cart</button></td>
-  </tr>
-  </c:forEach>
 
-</table>
+<div class="heading">
+    <h1>our shop</h1>
+    <p> <a href="home.jsp">home >></a> shop </p>
+</div>
+
+
+<section class="products">
+
+    <h1 class="title"> our <span>Book products</span>  </h1>
+
+    <div class="box-container">
+
+<c:forEach var="book" items="${books}">
+
+        <div class="box">
+            <div class="icons ${book.getpId() }" onclick="return addToCart(['${book.getpId() }','${book.getpName() }', '${book.getPrice() }', '1', '${book.getImage()}'])">
+                <a href="#" class="fas fa-shopping-cart"></a>
+            </div>
+            <div class="icons ${book.getpId() }" style="display:none;" onclick="return removeFromCart(['${book.getpId() }'])">
+                <a href="#" class="fa fa-trash-o"></a>
+            </div>
+            <div class="image">
+                <img src="${book.getImage() }" alt="" height="10" width="150">
+            </div>
+            <div class="content">
+                <h3>${book.getpName() }</h3>
+                <h2>Publisher : ${book.getCompName() }</h2>
+                <h2>Product Description : ${book.getDes() }</h2>
+                <h2>Product ID    : ${book.getpId() }</h2>
+      <h2>Stock : ${book.getStock() }<h2>
+      <h2>Author : ${book.getAuthor() }<h2>
+      <h2>Pages : ${book.getPages() }<h2>
+                <div class="price">${book.getPrice() } Rs.</div>
+
+            </div>
+        </div>
+        
+        </c:forEach>
+  
+    </div>
+
+</section>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>
@@ -69,16 +82,36 @@
 				id:a[0],
 				price:a[2],
 				qty:a[3],
+				image:a[4]
 			},
 			
 			success:function(data){
-				x[0].style.display = "grid";
+				x[0].style.display = "none";
+				x[1].style.display="flex";
+			}
+		})
+	}
+</script>
+<script>
+
+	function removeFromCart(a)
+	{
+		var x = document.getElementsByClassName(a[0]);
+		
+		$.ajax({
+			type:"POST",
+			url:"deleteQty",
+			data:{
+				id:a[0],
+			},
+			
+			success:function(data){
+				x[0].style.display = "flex";
 				x[1].style.display="none";
 			}
 		})
 	}
 </script>
-
 
 </body>
 </html>

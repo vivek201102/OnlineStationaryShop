@@ -26,6 +26,12 @@ public class CartGenerateDao {
 		return 1;
 	}
 	
+	@Transactional
+	public void delete(CartGenerate c)
+	{
+		this.ht.delete(c);
+	}
+	
 	public CartGenerate getCart(int userid)
 	{
 		try {

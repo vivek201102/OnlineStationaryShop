@@ -21,7 +21,7 @@
     <nav class="navbar">
         <a href="home.jsp">home</a>
         <a href="view_product.jsp">Product</a>
-        <a href="view_past_order.jsp">Past Order</a>
+        <a href="history">Past Order</a>
         <a href="cart">View Cart</a>
         <a href="#">LogOut</a>
     </nav>

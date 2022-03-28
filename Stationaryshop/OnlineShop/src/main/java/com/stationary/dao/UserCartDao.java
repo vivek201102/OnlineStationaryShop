@@ -62,10 +62,26 @@ public class UserCartDao {
 		}
 	}
 	
-	@Transactional
-	public int incrementItem(int cartId, String productId, int qty) {
+	public List<UserCart> getcurrentCart(int cartid, int userId)
+	{
 		try {
-			jt.update("update UserCart set prodCount = ? where cartId = ? and prodId = ?",qty,cartId,productId);
+			String query = "select * from usercart where cartId = ? and userId = ?";
+			RowMapper<UserCart> row = new RowMappingUserCart();
+			List<UserCart> usercart = this.jt.query(query, row, cartid, userId);
+			return usercart;
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.getLocalizedMessage());
+			return null;
+		}
+	}
+	
+	@Transactional
+	public int incrementItem(int cartId, String productId, int qty, int price) {
+		try {
+			int total = qty * price;
+			jt.update("update UserCart set prodCount = ?, prodTotal = ? where cartId = ? and prodId = ?",qty, total,cartId,productId);
 			return 1;
 		}
 		catch(Exception e) {

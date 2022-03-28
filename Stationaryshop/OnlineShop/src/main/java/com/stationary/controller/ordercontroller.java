@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.stationary.dao.CartGenerateDao;
+import com.stationary.dao.Orderdetaildao;
 import com.stationary.dao.UserCartDao;
 import com.stationary.entities.User;
 import com.stationary.order.CartGenerate;
+import com.stationary.order.Orderdetail;
 import com.stationary.order.UserCart;
 
 @Controller
@@ -29,9 +31,12 @@ public class ordercontroller {
 	@Autowired
 	private UserCartDao usercartdao;
 	
+	@Autowired
+	private Orderdetaildao orderdao;
+	
 	@RequestMapping(path="/addtocart", method=RequestMethod.POST)
 	@ResponseBody
-	public String addtocart(@RequestParam("name") String name, @RequestParam("id") String id, @RequestParam("price") int price, @RequestParam("qty") int qty, HttpServletRequest request)
+	public String addtocart(@RequestParam("name") String name, @RequestParam("id") String id, @RequestParam("price") int price, @RequestParam("qty") int qty, @RequestParam("image") String image,HttpServletRequest request)
 	{
 		HttpSession session = request.getSession();
 		User u = (User) session.getAttribute("user");
@@ -50,6 +55,8 @@ public class ordercontroller {
 			usercart.setProdId(id);
 			usercart.setProdName(name);
 			usercart.setProdPrice(price);
+			usercart.setProdTotal(price);
+			usercart.setProdImage(image);
 			usercartdao.insertCart(usercart);
 			return "done";
 		}
@@ -70,7 +77,10 @@ public class ordercontroller {
 				usercart.setProdId(id);
 				usercart.setProdName(name);
 				usercart.setProdPrice(price);
+				usercart.setProdImage(image);
+				usercart.setProdTotal(price);
 				usercartdao.insertCart(usercart);
+				
 				return "done";
 			}
 		}
@@ -84,21 +94,81 @@ public class ordercontroller {
 		HttpSession session = request.getSession();
 		User u = (User) session.getAttribute("user");
 		CartGenerate cart = generatedao.getCart(u.getId());
-		session.setAttribute("cartgenrate", cart);
-		List<UserCart> usercart = usercartdao.getcart(u.getId());
+		List<UserCart> usercart;
+		if(cart != null)
+		{
+			session.setAttribute("cartgenerate", cart);
+			usercart = usercartdao.getcurrentCart(cart.getId(), u.getId());
+		}
+		else
+		{
+			usercart = null;
+		}
 		ModelAndView model = new ModelAndView("cart");
 		model.addObject("usercart", usercart);
 		return model;
 	}
 	
 	
+	@RequestMapping("bill")
+	public ModelAndView genratebill(HttpServletRequest request)
+	{
+		try {
+		ModelAndView model = new ModelAndView("invoice");
+		HttpSession session = request.getSession();
+		User u = (User) session.getAttribute("user");
+		CartGenerate cart = (CartGenerate) session.getAttribute("cartgenerate");
+		List<UserCart> usercart = usercartdao.getcurrentCart(cart.getId(), u.getId());
+		Orderdetail od = new Orderdetail();
+		od.setCartId(cart.getId());
+		od.setOrderingDate(new Date().toString());
+		od.setUserId(u.getId());
+		od.setitemPerOrder(usercart);
+		od.setMyOrderId(Integer.toString(cart.getId()), Integer.toString(u.getId()));
+		od.calTot();
+		od.grandTotaol();
+		generatedao.delete(cart);
+		orderdao.insertOrder(od);
+		Orderdetail nod = orderdao.getcurrent(u.getId(), cart.getId());
+		od.setId(nod.getId());
+		model.addObject("bill", od);
+		model.addObject("user", u);
+		model.addObject("cartItem", usercart);
+		return model;
+		}
+		catch(Exception e) {
+			System.out.println(e.getLocalizedMessage());
+			ModelAndView model = new ModelAndView("invoice");
+			HttpSession session = request.getSession();
+			User u = (User) session.getAttribute("user");
+			CartGenerate cart = (CartGenerate) session.getAttribute("cartgenerate");
+			List<UserCart> usercart = usercartdao.getcurrentCart(cart.getId(), u.getId());
+			Orderdetail od = new Orderdetail();
+			od.setCartId(cart.getId());
+			od.setOrderingDate(new Date().toString());
+			od.setUserId(u.getId());
+			od.setitemPerOrder(usercart);
+			od.setMyOrderId(Integer.toString(cart.getId()), Integer.toString(u.getId()));
+			od.calTot();
+			od.grandTotaol();
+			Orderdetail nod = orderdao.getcurrent(u.getId(), cart.getId());
+			od.setId(nod.getId());
+			model.addObject("bill", od);
+			model.addObject("user", u);
+			model.addObject("cartItem", usercart);
+			return model;
+			
+		}
+	}
+	
 	@RequestMapping("/changeQty")
 	@ResponseBody
-	public String increment(@RequestParam("id") String id, @RequestParam("qty") int qty, HttpServletRequest request)
+	public String increment(@RequestParam("id") String id, @RequestParam("qty") int qty, @RequestParam("price") int price, HttpServletRequest request)
 	{
 		HttpSession session = request.getSession();
-		CartGenerate cart = (CartGenerate) session.getAttribute("cartgenrate");
-		int x = usercartdao.incrementItem(cart.getId(), id, qty);
+		CartGenerate cart = (CartGenerate) session.getAttribute("cartgenerate");
+		System.out.println(cart.getId());
+		int x = usercartdao.incrementItem(cart.getId(), id, qty, price);
 		if(x==1)
 		{
 		return "done";
@@ -114,8 +184,26 @@ public class ordercontroller {
 	public String deleteItem(@RequestParam("id") String id, HttpServletRequest request)
 	{
 		HttpSession session = request.getSession();
-		CartGenerate cart = (CartGenerate) session.getAttribute("cartgenrate");
+		CartGenerate cart = (CartGenerate) session.getAttribute("cartgenerate");
 		int x = usercartdao.deleteItem(cart.getId(), id);
 		return "done";
+	}
+	
+	
+	@RequestMapping("/history")
+	public ModelAndView allOrder(HttpServletRequest request)
+	{
+		ModelAndView model = new ModelAndView("allorder");
+		HttpSession session = request.getSession();
+		User u = (User)session.getAttribute("user");
+		List<Orderdetail> od = orderdao.getorder(u.getId());
+		for(Orderdetail o: od)
+		{
+			List<UserCart> uc = usercartdao.getcurrentCart(o.getCartId(), u.getId());
+			o.setitemPerOrder(uc);
+		}
+		model.addObject("history", od);
+		model.addObject("user", u);
+		return model;
 	}
 }

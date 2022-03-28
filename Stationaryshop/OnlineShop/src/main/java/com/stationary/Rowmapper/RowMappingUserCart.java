@@ -22,6 +22,8 @@ public class RowMappingUserCart implements RowMapper<UserCart>{
 			usercart.setProdName(rs.getString("prodName"));
 			usercart.setProdPrice(rs.getInt("prodPrice"));
 			usercart.setUserId(rs.getInt("userId"));
+			usercart.setProdImage(rs.getString("prodImage"));
+			usercart.setProdTotal(rs.getInt("prodTotal"));
 			return usercart;
 			}
 			catch(Exception e) {

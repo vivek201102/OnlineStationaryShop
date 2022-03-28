@@ -16,17 +16,37 @@
     <a href="home.html" class="logo">  Your Stationary </a>
 
     <nav class="navbar">
-        <a href="home.jsp">Home</a>
+        <a href="home">Home</a>
         <a href="view_product.jsp">Product</a>
         <a href="view_past_order.jsp">Past Order</a>
-        <a href="cart.jsp">View Cart</a>
+        <a href="cart">View Cart</a>
         <a href="#">LogOut</a>
     </nav>
 </header>
 <br><br><br><br><br><br>
-<span id="error"></span>
+
+
+
+<c:choose>
+
+<c:when test="${empty usercart }">
+<div style="  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);">
+<h1>Cart is Empty</h1>
+<a href="home" style="text-decoration:none; font-size:18px;	">Continue Shopping</a>
+</div>
+</c:when>
+
+
+
+<c:otherwise>
+
 <table class="demotbl">
   <tr>
+  	  <th>Image</th>
       <th>Product ID</th>
       <th>Product Name</th>
       <th>Product price</th>
@@ -35,43 +55,53 @@
   
   <c:forEach var="cartitem" items="${usercart}">
   <tr>
+  	  <td><img src="${cartitem.getProdImage() }" height="200" width="150"></td>
       <td>${cartitem.getProdId()}</td>
       <td>${cartitem.getProdName()}</td>
       <td>${cartitem.getProdPrice() }</td>
       <td>
      <c:set var="qty" value="${cartitem.getProdCount()}"></c:set>
  
-      <button class="btn ${cartitem.getProdId()}" onclick="decrementqty('${cartitem.getProdId()}')">-</button>
+      <button class="btn ${cartitem.getProdId()}" onclick="return decrementqty(['${cartitem.getProdId()}', '${cartitem.getProdPrice() }'])">-</button>
 
      
       <input type="text" id="${cartitem.getProdId() }" value="${cartitem.getProdCount() }" size="6" style="text-align:center;" readonly>
-      <button class="btn" onclick="incrementqty('${cartitem.getProdId()}')">+</button>&emsp;
+      <button class="btn" onclick=" return incrementqty(['${cartitem.getProdId()}', '${cartitem.getProdPrice() }'])">+</button>&emsp;
       <a onclick="deleteqty('${cartitem.getProdId()}')"><i class="fa fa-trash-o" style="font-size:24px;color:red"></i></a>
       </td>
   </tr>
   </c:forEach>
 	<tr>
-	<td colspan="4"><a href="#" class="btn">Generate Bill</a></td>
+	<td colspan="5"><a href="bill" class="btn">Generate Bill</a></td>
 	</tr>
 </table>
+
+</c:otherwise>
+</c:choose>
+
+
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script type="text/javascript">
 	function incrementqty(a)
 	{
-		var x = document.getElementById(a);
+		var x = document.getElementById(a[0]);
 		var value = parseInt(x.value);
+		 	
+		
 		if(value < 10)
 		{
 			value = value + 1;
 		}
+		console.log(value);
 	
 		$.ajax({
 			url:"changeQty",
 			type: "POST",
 			data:{
-				"id":a,
+				"id":a[0],
 				"qty":value,
+				"price":a[1],
 			},
 			
 			success: function(data){
@@ -85,7 +115,7 @@
 <script type="text/javascript">
 	function decrementqty(a)
 	{
-		var x = document.getElementById(a);
+		var x = document.getElementById(a[0]);
 		var value = parseInt(x.value);
 		if(value > 1)
 		{
@@ -95,8 +125,9 @@
 				url:"changeQty",
 				type: "POST",
 				data:{
-					"id":a,
+					"id":a[0],
 					"qty":value,
+					"price":a[1],
 				},
 				
 				success: function(data){
