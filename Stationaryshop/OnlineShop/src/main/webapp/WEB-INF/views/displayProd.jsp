@@ -113,7 +113,7 @@
                         <li class="menu-title">Menu</li>
                         <li>
                             <a href="dashboard" class="waves-effect">
-                                <i class="dripicons-meter"></i><span class="badge badge-info badge-pill float-right"></span> <span> Dashboard </span>
+                                <i class="dripicons-meter"></i><span class="badge badge-info badge-pill float-right"></span> <span>Dashboard</span>
                             </a>
                         </li>
 

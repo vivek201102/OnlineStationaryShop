@@ -167,27 +167,31 @@
 												
                                                 <th>Email</th>
                                                 <th>Mobile</th>
-                                                <th>Address Line 1</th>
-                                                <th>Address Line 2</th>
                                                 <th>City</th>
-                                                <th>Pincode</th>
+                                                <th>Order Placed</th>
 												<th>Action</th>
 												
                                             </tr>
                                         </thead>
 
                                         <tbody>
-                                        <c:forEach var="user" items="${users }">
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        <c:forEach var="user" items="${users }" varStatus="loop">
+                                        
                                             <tr>
                                                 <td>${user.getName() }</td>
                                                 <td>${user.getEmail() }</td>
                                                 <td>${user.getMobile() }</td>
-                                                <td>${user.address.gethNo() }, ${user.address.getAddress1() }</td>
-                                                <td>${user.address.getAddress2() }</td>
                                                 <td>${user.address.getCity() }</td>
-                                                <td>${user.address.getPincode() }</td>
+                                                <td>${count.get(loop.index)}</td>
 												<td><a href="customers.html">Delete </a></td>
                                             </tr>
+                                           
 										</c:forEach>
 
 											

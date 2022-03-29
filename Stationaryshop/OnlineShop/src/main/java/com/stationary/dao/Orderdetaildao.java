@@ -55,4 +55,20 @@ public class Orderdetaildao {
 			return null;
 		}
 	}
+	
+	public int getCount(int userId)
+	{
+		try {
+			String query = "select * from orderdetail where userId = ?";
+			List<Orderdetail> od = this.jt.query(query, new RowMappingOrderDetail(), userId);
+			return od.size();
+			}
+			catch(Exception e)
+			{
+				System.out.println(e.getLocalizedMessage());
+				return 0;
+			}
+	}
+	
+	
 }
