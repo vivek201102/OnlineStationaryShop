@@ -87,5 +87,11 @@ public class UserDao {
 				return null;
 			}
 	}
+	
+	public int countCus()
+	{
+		List<User> users = this.ht.loadAll(User.class);
+		return users.size();
+	}
 
 }

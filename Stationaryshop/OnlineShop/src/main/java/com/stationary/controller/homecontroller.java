@@ -78,6 +78,8 @@ public class homecontroller {
 		return model;
 	}
 	
+	
+	
 	@RequestMapping("/signup")
 	public String signup()
 	{
@@ -239,11 +241,12 @@ public class homecontroller {
 		}
 		else
 		{
-			boolean ad = admindao.getAdmin(u);
+			
+			int ad = admindao.getAdmin(u);
 			ModelAndView model;
-			if(ad == true)
+			if(ad == 1)
 			{
-				model = new ModelAndView("redirect:admin");
+				model = new ModelAndView("redirect:dashboard");
 			}
 			else
 			{
@@ -281,5 +284,16 @@ public class homecontroller {
 		HttpSession session = request.getSession();
 		session.invalidate();
 		return new ModelAndView("login");
+	}
+	
+	@RequestMapping("/dashboard")
+	public ModelAndView dash()
+	{
+		int usercount = user.countCus();
+		int prodcount = bookdao.countBook() + calcdao.countCalc() + deskdao.countDesk() + pendao.countPen();
+		ModelAndView model = new ModelAndView("dashboard");
+		model.addObject("cuscount", usercount);
+		model.addObject("prodcount", prodcount);
+		return model;
 	}
 }

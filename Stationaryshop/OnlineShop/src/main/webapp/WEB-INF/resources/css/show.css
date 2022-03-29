@@ -368,6 +368,8 @@ section {
   gap: 1.5rem;
 }
 
+
+
 .products .box-container .box {
   position: relative;
   background: #f3f3f3;
@@ -421,8 +423,7 @@ section {
 }
 
 .products .box-container .box .image img {
-  height: 100%;
-  width: 100%;
+
   -o-object-fit: cover;
      object-fit: cover;
 }

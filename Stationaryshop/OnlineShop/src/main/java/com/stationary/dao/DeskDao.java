@@ -13,6 +13,7 @@ import com.stationary.Items.Book;
 import com.stationary.Items.Desk;
 import com.stationary.Rowmapper.RowMappingBook;
 import com.stationary.Rowmapper.RowMappingDesk;
+import com.stationary.entities.User;
 
 @Repository
 public class DeskDao{
@@ -69,6 +70,12 @@ public class DeskDao{
 		// TODO Auto-generated method stub
 		Desk d = this.ht.get(Desk.class, id);
 		return d;
+	}
+	
+	public int countDesk()
+	{
+		List<Desk> desk = this.ht.loadAll(Desk.class);
+		return desk.size();
 	}
 
 }

@@ -47,7 +47,7 @@
                 <a  class="fa fa-trash-o"></a>
             </div>
             <div class="image">
-                <img src="${book.getImage() }" alt="" height="10" width="150">
+                <img src="${book.getImage() }" alt="" height="350" width="250">
             </div>
             <div class="content">
                 <h3>${book.getpName() }</h3>

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.stationary.Items.Book;
 import com.stationary.Items.Desk;
 import com.stationary.Rowmapper.RowMappingBook;
+import com.stationary.entities.User;
 
 @Repository
 public class BookDao{
@@ -67,5 +68,11 @@ public class BookDao{
 	public List<Book> getall()
 	{
 		return this.ht.loadAll(Book.class);
+	}
+	
+	public int countBook()
+	{
+		List<Book> book = this.ht.loadAll(Book.class);
+		return book.size();
 	}
 }

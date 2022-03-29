@@ -18,11 +18,16 @@ public class AdminDao {
 	@Autowired
 	private JdbcTemplate jt;
 	
-	public boolean getAdmin(User user)
+	public int getAdmin(User user)
 	{
-		admin a = this.jt.queryForObject("select * from admin where userId = ?", new RowMappingAdmin(), user.getId());
-		if(a == null)
-			return false;
-		return true;
+		try {
+			admin a = this.jt.queryForObject("select * from admin where userId = ?", new RowMappingAdmin(), user.getId());
+			return 1;
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.getLocalizedMessage());
+			return 0;
+		}
 	}
 }

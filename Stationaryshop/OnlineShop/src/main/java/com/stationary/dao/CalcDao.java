@@ -14,6 +14,7 @@ import com.stationary.Items.Calc;
 import com.stationary.Items.Desk;
 import com.stationary.Rowmapper.RowMappingBook;
 import com.stationary.Rowmapper.RowMappingCalc;
+import com.stationary.entities.User;
 
 @Repository
 public class CalcDao{
@@ -66,5 +67,11 @@ public class CalcDao{
 	public List<Calc> getall()
 	{
 		return this.ht.loadAll(Calc.class);
+	}
+	
+	public int countCalc()
+	{
+		List<Calc> calc = this.ht.loadAll(Calc.class);
+		return calc.size();
 	}
 }

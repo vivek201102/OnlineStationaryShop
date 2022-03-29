@@ -14,6 +14,7 @@ import com.stationary.Items.Desk;
 import com.stationary.Items.Pen;
 import com.stationary.Rowmapper.RowMappingBook;
 import com.stationary.Rowmapper.RowMappingPen;
+import com.stationary.entities.User;
 
 @Repository
 public class PenDao{
@@ -67,6 +68,12 @@ public class PenDao{
 	public List<Pen> getall()
 	{
 		return this.ht.loadAll(Pen.class);
+	}
+	
+	public int countPen()
+	{
+		List<Pen> pen = this.ht.loadAll(Pen.class);
+		return pen.size();
 	}
 
 }
