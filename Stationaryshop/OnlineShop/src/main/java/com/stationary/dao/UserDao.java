@@ -73,6 +73,20 @@ public class UserDao {
 			return null;
 	}
 	
+	
+	public List<User> getNormal()
+	{
+		try {
+			List<User> userlist = this.jt.query("select * from user where id not in (select userId from admin)", new RowMappingUser());
+			return userlist;
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.getLocalizedMessage());
+			return null;
+		}
+	}
+	
 	public User getUser(String email, String pass)
 	{
 		try {

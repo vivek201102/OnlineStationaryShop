@@ -1,6 +1,7 @@
 package com.stationary.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,6 +39,9 @@ public class admincontroller {
 	@Autowired
 	UserDao userdao;
 	
+	@Autowired
+	Orderdetaildao orderdao;
+	
 
 	
 	@RequestMapping("/admin-customer")
@@ -49,9 +53,15 @@ public class admincontroller {
 		{
 			return new ModelAndView("login");
 		}
-		List<User> users = userdao.getAllUser();
+		List<User> users = userdao.getNormal();
+		ArrayList<Integer> count = new ArrayList<Integer>();
+		for(User us: users)
+		{
+			count.add(orderdao.getCount(us.getId()));
+		}
 		ModelAndView model = new ModelAndView("displayCustomer");
 		model.addObject("users", users);
+		model.addObject("count", count);
 		return model;
 	}
 	
