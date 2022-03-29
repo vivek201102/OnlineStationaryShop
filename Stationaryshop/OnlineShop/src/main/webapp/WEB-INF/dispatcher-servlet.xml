@@ -58,6 +58,9 @@
 					com.stationary.entities.User
 				</value>
 				<value>
+					com.stationary.entities.admin
+				</value>
+				<value>
 					com.stationary.Items.Book
 				</value>
 				<value>

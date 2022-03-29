@@ -17,10 +17,10 @@
 
     <nav class="navbar">
         <a href="home">Home</a>
-        <a href="view_product.jsp">Product</a>
-        <a href="view_past_order.jsp">Past Order</a>
+        <a href="allprod">Product</a>
+        <a href="history">Past Order</a>
         <a href="cart">View Cart</a>
-        <a href="#">LogOut</a>
+        <a href="logout">LogOut</a>
     </nav>
 </header>
 <br><br><br><br><br><br>

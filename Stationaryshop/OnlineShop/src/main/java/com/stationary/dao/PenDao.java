@@ -31,7 +31,7 @@ public class PenDao{
 		return 1;
 	}
 
-
+	@Transactional
 	public int deleteObj(Pen p) {
 		// TODO Auto-generated method stub
 		this.ht.delete(p);

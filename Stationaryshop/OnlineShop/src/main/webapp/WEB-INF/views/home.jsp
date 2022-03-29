@@ -20,10 +20,10 @@
 
     <nav class="navbar">
         <a href="home.jsp">home</a>
-        <a href="view_product.jsp">Product</a>
+        <a href="allprod">Product</a>
         <a href="history">Past Order</a>
         <a href="cart">View Cart</a>
-        <a href="#">LogOut</a>
+        <a href="logout">LogOut</a>
     </nav>
 </header>
 <section class="home">

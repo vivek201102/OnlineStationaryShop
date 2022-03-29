@@ -31,7 +31,7 @@ public class CalcDao{
 		return 1;
 	}
 
-	
+	@Transactional
 	public int deleteObj(Calc p) {
 		// TODO Auto-generated method stub
 		this.ht.delete(p);

@@ -14,8 +14,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.stationary.Items.Book;
+import com.stationary.Items.Calc;
+import com.stationary.Items.Desk;
+import com.stationary.Items.Pen;
+import com.stationary.dao.BookDao;
+import com.stationary.dao.CalcDao;
 import com.stationary.dao.CartGenerateDao;
+import com.stationary.dao.DeskDao;
 import com.stationary.dao.Orderdetaildao;
+import com.stationary.dao.PenDao;
 import com.stationary.dao.UserCartDao;
 import com.stationary.entities.User;
 import com.stationary.order.CartGenerate;
@@ -34,10 +42,23 @@ public class ordercontroller {
 	@Autowired
 	private Orderdetaildao orderdao;
 	
+	@Autowired
+	private BookDao bookdao;
+	
+	@Autowired
+	private PenDao pendao;
+	
+	@Autowired
+	private DeskDao deskdao;
+	
+	@Autowired
+	private CalcDao calcdao;
+	
 	@RequestMapping(path="/addtocart", method=RequestMethod.POST)
 	@ResponseBody
 	public String addtocart(@RequestParam("name") String name, @RequestParam("id") String id, @RequestParam("price") int price, @RequestParam("qty") int qty, @RequestParam("image") String image,HttpServletRequest request)
 	{
+		try {
 		HttpSession session = request.getSession();
 		User u = (User) session.getAttribute("user");
 		CartGenerate cart = generatedao.getCart(u.getId());
@@ -84,6 +105,11 @@ public class ordercontroller {
 				return "done";
 			}
 		}
+		}
+		catch(Exception e)
+		{
+			return "not-done";
+		}
 	}
 	
 	
@@ -91,6 +117,7 @@ public class ordercontroller {
 	@RequestMapping("/cart")
 	public ModelAndView showCart(HttpServletRequest request)
 	{
+		try {
 		HttpSession session = request.getSession();
 		User u = (User) session.getAttribute("user");
 		CartGenerate cart = generatedao.getCart(u.getId());
@@ -107,6 +134,13 @@ public class ordercontroller {
 		ModelAndView model = new ModelAndView("cart");
 		model.addObject("usercart", usercart);
 		return model;
+		}
+		
+		catch(Exception e)
+		{
+			System.out.println(e.getLocalizedMessage());
+			return new ModelAndView("login");
+		}
 	}
 	
 	
@@ -131,6 +165,44 @@ public class ordercontroller {
 		orderdao.insertOrder(od);
 		Orderdetail nod = orderdao.getcurrent(u.getId(), cart.getId());
 		od.setId(nod.getId());
+		
+		for(UserCart myitem: usercart)
+		{
+			Book book = bookdao.getById(myitem.getProdId());
+			if(book != null)
+			{
+				int newStock = book.getStock() - myitem.getProdCount();
+				book.setStock(newStock);
+				bookdao.updateObj(book);
+			}
+			else {
+				Pen pen = pendao.getById(myitem.getProdId());
+				if(pen != null)
+				{
+					int newStock = pen.getStock() - myitem.getProdCount();
+					pen.setStock(newStock);
+					pendao.updateObj(pen);
+				}
+				
+				else {
+					Desk desk = deskdao.getById(myitem.getProdId());
+					if(desk != null)
+					{
+						int newStock = desk.getStock() - myitem.getProdCount();
+						desk.setStock(newStock);
+						deskdao.updateObj(desk);
+					}
+					
+					else {
+						Calc calc = calcdao.getById(myitem.getProdId());
+						int newStock = calc.getStock() - myitem.getProdCount();
+						calc.setStock(newStock);
+						calcdao.updateObj(calc);
+					}
+				}
+			}
+		}
+		
 		model.addObject("bill", od);
 		model.addObject("user", u);
 		model.addObject("cartItem", usercart);
@@ -193,6 +265,7 @@ public class ordercontroller {
 	@RequestMapping("/history")
 	public ModelAndView allOrder(HttpServletRequest request)
 	{
+		try {
 		ModelAndView model = new ModelAndView("allorder");
 		HttpSession session = request.getSession();
 		User u = (User)session.getAttribute("user");
@@ -205,5 +278,11 @@ public class ordercontroller {
 		model.addObject("history", od);
 		model.addObject("user", u);
 		return model;
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.getLocalizedMessage());
+			return new ModelAndView("login");
+		}
 	}
 }

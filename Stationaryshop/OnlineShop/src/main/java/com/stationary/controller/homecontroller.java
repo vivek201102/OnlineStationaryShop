@@ -20,6 +20,7 @@ import com.stationary.Items.Book;
 import com.stationary.Items.Calc;
 import com.stationary.Items.Desk;
 import com.stationary.Items.Pen;
+import com.stationary.dao.AdminDao;
 import com.stationary.dao.BookDao;
 import com.stationary.dao.CalcDao;
 import com.stationary.dao.DeskDao;
@@ -35,6 +36,8 @@ import com.stationary.order.UserCart;
 @Controller
 public class homecontroller {
 	
+	@Autowired
+	private AdminDao admindao;
 
 	@Autowired
 	private UserDao user;
@@ -60,6 +63,21 @@ public class homecontroller {
 		return "login";
 	}
 	
+	@RequestMapping("/admin")
+	public ModelAndView adminpage()
+	{
+		ModelAndView model = new ModelAndView("admin-product");
+		List<Book> books = bookdao.getall();
+		List<Pen> pens = pendao.getall();
+		List<Desk> desks = deskdao.getall();
+		List<Calc> calcs = calcdao.getall();
+		model.addObject("books", books);
+		model.addObject("pens", pens);
+		model.addObject("desks", desks);
+		model.addObject("calcs", calcs);
+		return model;
+	}
+	
 	@RequestMapping("/signup")
 	public String signup()
 	{
@@ -73,7 +91,7 @@ public class homecontroller {
 	}
 	
 	@RequestMapping(path = "/adduser",method = RequestMethod.POST)
-	public String saveUser(@RequestParam("name") String name,
+	public ModelAndView saveUser(@RequestParam("name") String name,
 						 @RequestParam("email") String email,
 						 @RequestParam("mobile") String mobile,
 						 @RequestParam("hNo") String hno,
@@ -81,7 +99,7 @@ public class homecontroller {
 						 @RequestParam("add2") String add2,
 						 @RequestParam("city") String city,
 						 @RequestParam("pincode") String zip,
-						 @RequestParam("password") String psw, Model model)
+						 @RequestParam("password") String psw)
 	{
 		User duplicate = user.getOneObj(email);
 		if(duplicate == null)
@@ -93,21 +111,24 @@ public class homecontroller {
 		User u = new User(name,psw,mobile,email,date,a);
 		u.setAddress(a);
 		user.insertObj(u);
-		return "login";
+		ModelAndView model = new ModelAndView("redirect:login");
+		return model;
 		}
 		else {
-			model.addAttribute("error", "user with this email already exists!!!");
-			return "signup";
+			ModelAndView model = new ModelAndView("signup");
+			model.addObject("error", "user with this email already exists!!!");
+			return model;
 		}
 	}
 	
 	@RequestMapping("book")
 	public ModelAndView prodbook(HttpServletRequest request)
 	{
+		try {
 		ModelAndView model = new ModelAndView("book");
 		HttpSession session = request.getSession();
 		User u = (User) session.getAttribute("user");
-
+		
 		List<Book> book;
 		List<UserCart> usercart;
 		usercart = usercartdao.getcart(u.getId());
@@ -115,15 +136,21 @@ public class homecontroller {
 		model.addObject("cartitem", usercart);
 		model.addObject("books", book);
 		return model;
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.getLocalizedMessage());
+			return new ModelAndView("login");
+		}
 	}
 	
 	@RequestMapping("calc")
 	public ModelAndView prodcalc(HttpServletRequest request)
 	{
+		try {
 		ModelAndView model = new ModelAndView("calc");
 		HttpSession session = request.getSession();
 		User u = (User) session.getAttribute("user");
-
 		List<Calc> calc;
 		List<UserCart> usercart;
 		usercart = usercartdao.getcart(u.getId());
@@ -131,11 +158,19 @@ public class homecontroller {
 		model.addObject("cartitem", usercart);
 		model.addObject("calcs", calc);
 		return model;
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.getLocalizedMessage());
+			return new ModelAndView("login");
+		}
 	}
 	
 	@RequestMapping("desk")
 	public ModelAndView proddesk(HttpServletRequest request)
 	{
+		try {
+			
 		ModelAndView model = new ModelAndView("desk");
 		HttpSession session = request.getSession();
 		User u = (User) session.getAttribute("user");
@@ -147,15 +182,22 @@ public class homecontroller {
 		model.addObject("cartitem", usercart);
 		model.addObject("desks", desk);
 		return model;
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.getLocalizedMessage());
+			return new ModelAndView("login");
+		}
 	}
 	
 	@RequestMapping("pen")
 	public ModelAndView prodpen(HttpServletRequest request)
 	{
+		try {
 		ModelAndView model = new ModelAndView("pen");
 		HttpSession session = request.getSession();
 		User u = (User) session.getAttribute("user");
-
+		
 		List<Pen> pen;
 		List<UserCart> usercart;
 		usercart = usercartdao.getcart(u.getId());
@@ -163,11 +205,23 @@ public class homecontroller {
 		model.addObject("cartitem", usercart);
 		model.addObject("pens", pen);
 		return model;
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.getLocalizedMessage());
+			return new ModelAndView("login");
+		}
 	}
 	
 	@RequestMapping(path="home")
-	public ModelAndView home()
+	public ModelAndView home(HttpServletRequest request)
 	{
+		HttpSession session = request.getSession();
+		User u = (User)session.getAttribute("user");
+		if(u == null)
+		{
+			return new ModelAndView("login");
+		}
 		ModelAndView model = new ModelAndView("home");
 
 		return model;
@@ -185,11 +239,47 @@ public class homecontroller {
 		}
 		else
 		{
-			ModelAndView model = new ModelAndView("redirect:home");
+			boolean ad = admindao.getAdmin(u);
+			ModelAndView model;
+			if(ad == true)
+			{
+				model = new ModelAndView("redirect:admin");
+			}
+			else
+			{
+				model = new ModelAndView("redirect:home");
+			}
 			HttpSession session = request.getSession();
 			session.setAttribute("user", u);
 			return model;
 		}
 		
+	}
+	
+	@RequestMapping("/allprod")
+	private ModelAndView allprod(HttpServletRequest request)
+	{
+		HttpSession session = request.getSession();
+		User u = (User) session.getAttribute("user");
+		if(u== null)
+			return new ModelAndView("login");
+		ModelAndView model = new ModelAndView("products");
+		List<Book> books = bookdao.getall();
+		List<Pen> pens = pendao.getall();
+		List<Desk> desks = deskdao.getall();
+		List<Calc> calcs = calcdao.getall();
+		model.addObject("books", books);
+		model.addObject("pens", pens);
+		model.addObject("desks", desks);
+		model.addObject("calcs", calcs);
+		return model;
+	}
+	
+	@RequestMapping("/logout")
+	private ModelAndView logout(HttpServletRequest request)
+	{
+		HttpSession session = request.getSession();
+		session.invalidate();
+		return new ModelAndView("login");
 	}
 }

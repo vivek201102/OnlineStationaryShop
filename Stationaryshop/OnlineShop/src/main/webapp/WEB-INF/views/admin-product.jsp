@@ -71,22 +71,22 @@
 			</tr>
 
 
-			<c:forEach var="book" items="${pen}">
+			<c:forEach var="pen" items="${pens}">
 				<tr>
-					<td>${book.getpId() }</td>
-					<td>${book.getpName() }</td>
-					<td>${book.getDes() }</td>
-					<td>${book.getCompName() }</td>
-					<td>${book.getColor()}</td>
-					<td>${book.getPrice() }</td>
-					<td>${book.getStock() }</td>
-					<td><img src="${book.getImage()}" height="100" width="100"></td>
+					<td>${pen.getpId() }</td>
+					<td>${pen.getpName() }</td>
+					<td>${pen.getDes() }</td>
+					<td>${pen.getCompName() }</td>
+					<td>${pen.getColor()}</td>
+					<td>${pen.getPrice() }</td>
+					<td>${pen.getStock() }</td>
+					<td><img src="${pen.getImage()}" height="100" width="100"></td>
 					<form method="post" action="updatepenform">
-					<input type="hidden" name="pid" value="${book.getId()}">
+					<input type="hidden" name="pid" value="${pen.getId()}">
 					<td><button>Update</button></td>
 					</form>
-					<form method="post" action="deletebook">
-					<input type="hidden" name="pid" value="${book.getId()}">
+					<form method="post" action="deletepen">
+					<input type="hidden" name="pid" value="${pen.getId()}">
 					<td><button>Remove</button></td>
 					</form>
 				</tr>
@@ -112,22 +112,22 @@
 			</tr>
 
 
-			<c:forEach var="book" items="${desk}">
+			<c:forEach var="desk" items="${desks}">
 				<tr>
-					<td>${book.getpId() }</td>
-					<td>${book.getpName() }</td>
-					<td>${book.getDes() }</td>
-					<td>${book.getCompName() }</td>
-					<td>${book.getMaterial()}</td>
-					<td>${book.getPrice() }</td>
-					<td>${book.getStock() }</td>
-					<td><img src="${book.getImage()}" height="100" width="100"></td>
+					<td>${desk.getpId() }</td>
+					<td>${desk.getpName() }</td>
+					<td>${desk.getDes() }</td>
+					<td>${desk.getCompName() }</td>
+					<td>${desk.getMaterial()}</td>
+					<td>${desk.getPrice() }</td>
+					<td>${desk.getStock() }</td>
+					<td><img src="${desk.getImage()}" height="100" width="100"></td>
 					<form method="post" action="updatedeskform">
-					<input type="hidden" name="pid" value="${book.getId()}">
+					<input type="hidden" name="pid" value="${desk.getId()}">
 					<td><button>Update</button></td>
 					</form>
 					<form method="post" action="deletedesk">
-					<input type="hidden" name="pid" value="${book.getId()}">
+					<input type="hidden" name="pid" value="${desk.getId()}">
 					<td><button>Remove</button></td>
 					</form>
 				</tr>
@@ -153,22 +153,22 @@
 			</tr>
 
 
-			<c:forEach var="book" items="${calc}">
+			<c:forEach var="calc" items="${calcs}">
 				<tr>
-					<td>${book.getpId() }</td>
-					<td>${book.getpName() }</td>
-					<td>${book.getDes() }</td>
-					<td>${book.getCompName() }</td>
-					<td>${book.getType()}</td>
-					<td>${book.getPrice() }</td>
-					<td>${book.getStock() }</td>
-					<td><img src="${book.getImage()}" height="100" width="100"></td>
+					<td>${calc.getpId() }</td>
+					<td>${calc.getpName() }</td>
+					<td>${calc.getDes() }</td>
+					<td>${calc.getCompName() }</td>
+					<td>${calc.getType()}</td>
+					<td>${calc.getPrice() }</td>
+					<td>${calc.getStock() }</td>
+					<td><img src="${calc.getImage()}" height="100" width="100"></td>
 					<form method="post" action="updatecalcform">
-					<input type="hidden" name="pid" value="${book.getId()}">
+					<input type="hidden" name="pid" value="${calc.getId()}">
 					<td><button>Update</button></td>
 					</form>
-					<form method="post" action="deletebook">
-					<input type="hidden" name="pid" value="${book.getId()}">
+					<form method="post" action="deletecalc">
+					<input type="hidden" name="pid" value="${calc.getId()}">
 					<td><button>Remove</button></td>
 					</form>
 				</tr>

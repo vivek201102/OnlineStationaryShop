@@ -161,10 +161,10 @@ footer {
 
     <nav class="navbar">
         <a href="home">home</a>
-        <a href="">Product</a>
+        <a href="allprod">Product</a>
         <a href="history">Past Order</a>
         <a href="cart">View Cart</a>
-        <a href="#">LogOut</a>
+        <a href="logout">LogOut</a>
     </nav>
 </header>
       <br><br><br><br><br><br>

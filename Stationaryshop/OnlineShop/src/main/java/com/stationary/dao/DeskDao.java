@@ -32,6 +32,7 @@ public class DeskDao{
 	}
 
 	
+	@Transactional
 	public int deleteObj(Desk p) {
 		// TODO Auto-generated method stub
 		this.ht.delete(p);

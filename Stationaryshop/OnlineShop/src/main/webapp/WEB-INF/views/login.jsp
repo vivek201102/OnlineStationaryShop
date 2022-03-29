@@ -27,7 +27,7 @@
 					<span class="button__text">Log In Now</span>
 					<i class="button__icon fas fa-chevron-right"></i>
 				</button>		
-				<a class="button login__submit" href="signup.jsp">
+				<a class="button login__submit" href="signup">
 					<span class="button__text">New User?</span>
 					<i class="button__icon fas fa-chevron-right"></i>
 				</a>			

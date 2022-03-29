@@ -16,11 +16,11 @@
     <a href="home" class="logo">  Your Stationary </a>
 
     <nav class="navbar">
-        <a href="home.jsp">Home</a>
-        <a href="view_product.jsp">Product</a>
-        <a href="view_past_order.jsp">Past Order</a>
+        <a href="home">Home</a>
+        <a href="allprod">Product</a>
+        <a href="history">Past Order</a>
         <a href="cart">View Cart</a>
-        <a href="#">LogOut</a>
+        <a href="logout">LogOut</a>
     </nav>
 </header>
 
@@ -39,10 +39,10 @@
 
         <div class="box">
             <div class="icons ${pen.getpId() }" onclick="return addToCart(['${pen.getpId() }','${pen.getpName() }', '${pen.getPrice() }', '1', '${pen.getImage() }'])">
-                <a href="#" class="fas fa-shopping-cart"></a>
+                <a  class="fas fa-shopping-cart"></a>
             </div>
             <div class="icons ${pen.getpId() }" style="display:none;" onclick="return removeFromCart(['${pen.getpId() }'])">
-                <a href="#" class="fa fa-trash-o"></a>
+                <a  class="fa fa-trash-o"></a>
             </div>
             <div class="image">
                 <img src="${pen.getImage() }" alt="" height="10" width="150">
