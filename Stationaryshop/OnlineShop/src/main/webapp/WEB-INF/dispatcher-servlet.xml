@@ -58,6 +58,9 @@
 					com.stationary.entities.User
 				</value>
 				<value>
+					com.stationary.entities.admin
+				</value>
+				<value>
 					com.stationary.Items.Book
 				</value>
 				<value>
@@ -68,6 +71,15 @@
 				</value>
 				<value>
 					com.stationary.Items.Calc
+				</value>
+				<value>
+					com.stationary.order.CartGenerate
+				</value>
+				<value>
+					com.stationary.order.UserCart
+				</value>
+				<value>
+					com.stationary.order.Orderdetail
 				</value>
 			</list>
 		</property>

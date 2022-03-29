@@ -3,6 +3,9 @@ package com.stationary.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
@@ -16,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.stationary.Items.*;
 import com.stationary.dao.*;
+import com.stationary.entities.User;
 
 @Controller
 public class admincontroller {
@@ -31,122 +35,173 @@ public class admincontroller {
 	@Autowired
 	CalcDao calcdao;
 	
-	@RequestMapping("/bookform")
-	public String bookForm()
+	@Autowired
+	UserDao userdao;
+	
+
+	
+	@RequestMapping("/admin-customer")
+	public ModelAndView adminCus(HttpServletRequest request)
 	{
-		return "add-book";
+		HttpSession session = request.getSession();
+		User u =(User) session.getAttribute("user");
+		if(u == null)
+		{
+			return new ModelAndView("login");
+		}
+		List<User> users = userdao.getAllUser();
+		ModelAndView model = new ModelAndView("displayCustomer");
+		model.addObject("users", users);
+		return model;
 	}
 	
-	@RequestMapping("/penform")
-	public String penForm()
+	@RequestMapping(path = "/admin-product")
+	public ModelAndView adminprod(HttpServletRequest request)
 	{
-		return "add-pen";
-	}
-	
-	@RequestMapping("/calcform")
-	public String calcForm()
-	{
-		return "add-calc";
-	}
-	
-	@RequestMapping("/deskform")
-	public String deskForm()
-	{
-		return "add-desk";
-	}
-	
-	@RequestMapping(path = "/admin")
-	public ModelAndView admin()
-	{
+		HttpSession session = request.getSession();
+		User u =(User) session.getAttribute("user");
+		if(u == null)
+		{
+			return new ModelAndView("login");
+		}
 		List<Book> books = this.bookdao.getall();
 		List<Pen> pens = this.pendao.getall();
 		List<Desk> desks = this.deskdao.getall();
 		List<Calc> calc = this.calcdao.getall();
-		ModelAndView model = new ModelAndView("admin-product");
+		ModelAndView model = new ModelAndView("displayProd");
 		model.addObject("books", books);
-		model.addObject("pen", pens);
-		model.addObject("desk", desks);
-		model.addObject("calc", calc);
+		model.addObject("pens", pens);
+		model.addObject("desks", desks);
+		model.addObject("calcs", calc);
 		return model;
 	}
 	
 	@RequestMapping(path = "/addbook", method = RequestMethod.POST)
 	public ModelAndView addBook(
 			@ModelAttribute("book") Book book
-			) throws IOException
+			,HttpServletRequest request) throws IOException
 	{
+		HttpSession session = request.getSession();
+		User u =(User) session.getAttribute("user");
+		if(u == null)
+		{
+			return new ModelAndView("login");
+		}
 		bookdao.insertObj(book);
-		return new ModelAndView("redirect:" + "admin");
+		return new ModelAndView("redirect:" + "dashboard");
 	}
 	
 	
 	@RequestMapping(path = "/addpen", method = RequestMethod.POST)
 	public ModelAndView addPen(
 		@ModelAttribute("pen") Pen pen
-			) throws IOException
+			,HttpServletRequest request) throws IOException
 	{
+		HttpSession session = request.getSession();
+		User u =(User) session.getAttribute("user");
+		if(u == null)
+		{
+			return new ModelAndView("login");
+		}
 		pendao.insertObj(pen);
-		return new ModelAndView("redirect:" + "admin");
+		return new ModelAndView("redirect:" + "dashboard");
 	}
 	
 	@RequestMapping(path = "/adddesk", method = RequestMethod.POST)
 	public ModelAndView addDesk(
 			@ModelAttribute("desk") Desk desk
-		) throws IOException
+		, HttpServletRequest request) throws IOException
 	{
+		HttpSession session = request.getSession();
+		User u =(User) session.getAttribute("user");
+		if(u == null)
+		{
+			return new ModelAndView("login");
+		}
 		deskdao.insertObj(desk);
-		return new ModelAndView("redirect:" + "admin");
+		return new ModelAndView("redirect:" + "dashboard");
 	}
 	
 	
 	@RequestMapping(path = "/addcalc", method = RequestMethod.POST)
 	public ModelAndView addCalc(
 			@ModelAttribute("calc") Calc calc
-			) throws IOException
+			, HttpServletRequest request) throws IOException
 	{
+		HttpSession session = request.getSession();
+		User u =(User) session.getAttribute("user");
+		if(u == null)
+		{
+			return new ModelAndView("login");
+		}
 		calcdao.insertObj(calc);
-		return new ModelAndView("redirect:" + "admin");
+		return new ModelAndView("redirect:" + "dashboard");
 	}
 	
 	@RequestMapping("/deletebook")
-	public ModelAndView removeBook(@RequestParam("pid") String pid)
+	public ModelAndView removeBook(@RequestParam("pid") String pid, HttpServletRequest request)
 	{
+		HttpSession session = request.getSession();
+		User u =(User) session.getAttribute("user");
+		if(u == null)
+		{
+			return new ModelAndView("login");
+		}
 		int id = Integer.parseInt(pid);
 		Book b = bookdao.getOneObj(id);
 		bookdao.deleteObj(b);
-		return new ModelAndView("redirect:" + "admin");
+		return new ModelAndView("redirect:" + "dashboard");
 	}
 	
 	@RequestMapping("/deletepen")
-	public ModelAndView removePen(@RequestParam("pid") String pid)
+	public ModelAndView removePen(@RequestParam("pid") String pid, HttpServletRequest request)
 	{
+		HttpSession session = request.getSession();
+		User u =(User) session.getAttribute("user");
+		if(u == null)
+		{
+			return new ModelAndView("login");
+		}
 		int id = Integer.parseInt(pid);
 		Pen p = pendao.getOneObj(id);
 		pendao.deleteObj(p);
-		return new ModelAndView("redirect:" + "admin");
+		return new ModelAndView("redirect:" + "dashboard");
 	}
 	
 	@RequestMapping("/deletedesk")
-	public ModelAndView removeDesk(@RequestParam("pid") String pid)
+	public ModelAndView removeDesk(@RequestParam("pid") String pid, HttpServletRequest request)
 	{
+		HttpSession session = request.getSession();
+		User u =(User) session.getAttribute("user");
+		if(u == null)
+		{
+			return new ModelAndView("login");
+		}
 		int id = Integer.parseInt(pid);
 		Desk d = deskdao.getOneObj(id);
 		deskdao.deleteObj(d);
-		return new ModelAndView("redirect:" + "admin");
+		return new ModelAndView("redirect:" + "dashboard");
 	}
 	
 	@RequestMapping("/deletecalc")
-	public ModelAndView removeCalc(@RequestParam("pid") String pid)
+	public ModelAndView removeCalc(@RequestParam("pid") String pid, HttpServletRequest request)
 	{
+		HttpSession session = request.getSession();
+		User u =(User) session.getAttribute("user");
+		if(u == null)
+		{
+			return new ModelAndView("login");
+		}
 		int id = Integer.parseInt(pid);
 		Calc c = calcdao.getOneObj(id);
 		calcdao.deleteObj(c);
-		return new ModelAndView("redirect:admin");
+		return new ModelAndView("redirect:dashboard");
 	}
 	
 	@RequestMapping("/updatebookform")
 	public String updateBookform(@RequestParam("pid") String pid, Model model)
 	{
+		
 		int id = Integer.parseInt(pid);
 		Book b = bookdao.getOneObj(id);
 		model.addAttribute("book", b);
@@ -157,7 +212,7 @@ public class admincontroller {
 	public ModelAndView updateBook(@ModelAttribute("book") Book book)
 	{
 		bookdao.updateObj(book);
-		return new ModelAndView("redirect:admin");
+		return new ModelAndView("redirect:dashboard");
 	}
 	
 	@RequestMapping("/updatepenform")
@@ -173,7 +228,7 @@ public class admincontroller {
 	public ModelAndView updatePen(@ModelAttribute("pen") Pen pen)
 	{
 		pendao.updateObj(pen);
-		return new ModelAndView("redirect:admin");
+		return new ModelAndView("redirect:dashboard");
 	}
 	
 	@RequestMapping("/updatedeskform")
@@ -189,7 +244,7 @@ public class admincontroller {
 	public ModelAndView updateDesk(@ModelAttribute("desk") Desk desk)
 	{
 		deskdao.updateObj(desk);
-		return new ModelAndView("redirect:admin");
+		return new ModelAndView("redirect:dashboard");
 	}
 	
 	@RequestMapping("/updatecalcform")
@@ -205,7 +260,31 @@ public class admincontroller {
 	public ModelAndView updateCalc(@ModelAttribute("calc") Calc calc)
 	{
 		calcdao.updateObj(calc);
-		return new ModelAndView("redirect:admin");
+		return new ModelAndView("redirect:dashboard");
 	}
+	
+	@RequestMapping("/addprod")
+	public ModelAndView addprod(@ModelAttribute("prod") String prod)
+	{
+		ModelAndView model;
+		if(prod.equals("book"))
+		{
+			model = new ModelAndView("add-book");
+		}
+		else if(prod.equals("pen"))
+		{
+			model = new ModelAndView("add-pen");
+		}
+		else if(prod.equals("desk"))
+		{
+			model = new ModelAndView("add-desk");
+		}
+		else {
+			model = new ModelAndView("add-calc");
+		}
+		
+		return model;
+	}
+	
 	
 }

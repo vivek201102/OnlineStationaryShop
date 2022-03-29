@@ -5,16 +5,24 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.stationary.Items.Book;
 import com.stationary.Items.Desk;
+import com.stationary.Rowmapper.RowMappingBook;
+import com.stationary.Rowmapper.RowMappingDesk;
+import com.stationary.entities.User;
 
 @Repository
 public class DeskDao{
 	
 	@Autowired
 	private HibernateTemplate ht;
+	
+	@Autowired
+	private JdbcTemplate jt;
 	
 	
 	@Transactional
@@ -25,6 +33,7 @@ public class DeskDao{
 	}
 
 	
+	@Transactional
 	public int deleteObj(Desk p) {
 		// TODO Auto-generated method stub
 		this.ht.delete(p);
@@ -39,6 +48,19 @@ public class DeskDao{
 		return 0;
 	}
 	
+	public Desk getById(String pId)
+	{
+		try {
+		Desk d = this.jt.queryForObject("select * from desk where pId = ?", new RowMappingDesk(), pId);
+		return d;
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.getLocalizedMessage());
+			return null;
+		}
+	}
+	
 	public List<Desk> getall()
 	{
 		return this.ht.loadAll(Desk.class);
@@ -48,6 +70,12 @@ public class DeskDao{
 		// TODO Auto-generated method stub
 		Desk d = this.ht.get(Desk.class, id);
 		return d;
+	}
+	
+	public int countDesk()
+	{
+		List<Desk> desk = this.ht.loadAll(Desk.class);
+		return desk.size();
 	}
 
 }

@@ -2,83 +2,66 @@
     pageEncoding="ISO-8859-1"%>
     <%@page isELIgnored="false" %>
      <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<title>Sign Up</title>
+<link rel="stylesheet" href="<c:url value="resources/css/signup.css"/> ">
 </head>
 <body>
+<br>
+<div class="container">
 
-	<div style="text-align:center;">
-<h3 style="color:blue;">BOOKS.com</h3>
-<h6>Enjoy your stationary Buying....</h6>
-</div>
-<div class="container" style="max-width:50%">
-<h3>Register Your Self</h3>
+    <form id="signup" action="adduser" method="post">
 
-<form action="adduser" method="POST" >
-	<div class="mb-3">
-    	<label for="name" class="form-label">Name</label>
-    	<input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Name">
-  </div>
-  
-  <div class="mb-3">
-    	<label for="email" class="form-label">Email </label><span style="color:red;s">${error }</span>
-    	<input type="email" class="form-control" id="email" name="email" placeholder="Enter Your Email">
-  </div>
-  
-  <div class="mb-3">
-    	<label for="mobile" class="form-label">Mobile</label>
-    	<input type="text" class="form-control" id="mobile" name="mobile" placeholder="Enter Your Mobile">
-  </div>
+        <div class="header">
+        <br>
+            <h3>Sign Up</h3>
+            <br>
+            
+            <p>You Have to fill out this form</p>
+            
+        </div>
+        
+        <div class="sep"></div>
 
-	<div class="mb-3">
-    	<label for="address" class="form-label">Address</label>
-    	<input type="text" class="form-control" id="address" name="hNo" placeholder="House No">
-    	<input type="text" class="form-control" id="address" name="add1" placeholder="Address Line">
-    	<input type="text" class="form-control" id="address" name="add2" placeholder="Street">
-  	</div>
-  	<div class="mb-3">
-    	<label for="city" class="form-label">City</label>
-    	<input type="text" class="form-control" id="city" name="city" placeholder="City">
-  </div>
-  
-  <div class="mb-3">
-    	<label for="pincode" class="form-label">Zip</label>
-    	<input type="text" class="form-control" id="pincode" name="pincode" placeholder="Pincode"> 
-  </div>
-  
-  <div class="mb-3">
-    	<label for="password" class="form-label">Password</label>
-    	<input type="password" class="form-control" id="password" name="password" placeholder="Enter Password">
-  </div>
-  
-  <div class="mb-3">
-    	<label for="conform" class="form-label">Conform Password</label>
-    	<span id="message"></span>
-    	<input type="password" class="form-control" id="conform" name="conpassword" placeholder="Conform Your Password">
-  </div>
-  
-  <div class="mb-3">
-  	<button class="btn btn-success" type="submit">SUBMIT</button>
-  <a href="login" style="text-decoration:none; color:black;">Already User?</a>
-  </div>
-</form>
+        <div class="inputs">
+        
+            <input type="text" placeholder="Enter Your Name" autofocus name="name" required/>
+            <span style="color:red; font-size:12px;">${error }</span>
+            <input type="email" placeholder="Enter Your E-mail"  name="email" required/>
+            <input type="text" placeholder="Enter Your Mobile No." name="mobile" required/>
+            <input type="text" placeholder="Enter Your House No" name="hNo" required/>
+            <input type="text" placeholder="Enter Your Address Line1" name="add1" required/>
+            <input type="text" placeholder="Enter Your Address Line2" name="add2" required/>
+            <input type="text" placeholder="Enter Your City" name="city" required/>
+            <input type="text" placeholder="Enter Your PinCode" name="pincode" required/>
+            <input type="password" id="password" placeholder="Enter Your Password" name="password"required/>
+            <input type="password" id="conform" placeholder="Enter Your Confirm Password" required/>
+            <span id="message"></span>
+            <button id="submit" type="submit">submit</button>
+            <a id="submit"  href="login">Already User?</a>
+        
+        </div>
+
+    </form>
 
 </div>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script >
+
+<script type="text/javascript">
 $('#password, #conform').on('keyup', function () {
 	  if ($('#password').val() == $('#conform').val()) {
 	    $('#message').html('Matching').css('color', 'green');
-	  } else 
+	    document.getElementById("submit").disabled = false;
+	  } 
+	  else 
+	  {
 	    $('#message').html('Not Matching').css('color', 'red');
+	    document.getElementById("submit").disabled = true;
+	  }
 	});
 
 </script>
+
 </body>
 </html>
+​
